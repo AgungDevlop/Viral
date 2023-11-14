@@ -1,6 +1,5 @@
 [
     {
-        "nomor": 1,
         "kode_mk": "MK001",
         "nama_mk": "Data Integration",
         "sks": 3,
@@ -10,7 +9,6 @@
         "dosen": "Dosen A"
     },
     {
-        "nomor": 2,
         "kode_mk": "MK002",
         "nama_mk": "Jaringan Komputer Lanjut",
         "sks": 4,
@@ -20,7 +18,6 @@
         "dosen": "Dosen B"
     },
     {
-        "nomor": 3,
         "kode_mk": "MK003",
         "nama_mk": "Program Web Framework Data",
         "sks": 4,
@@ -30,7 +27,6 @@
         "dosen": "Dosen C"
     },
     {
-        "nomor": 4,
         "kode_mk": "MK004",
         "nama_mk": "Tata Kelola dan Audit Teknologi Informasi",
         "sks": 4,
@@ -40,7 +36,6 @@
         "dosen": "Dosen D"
     },
     {
-        "nomor": 5,
         "kode_mk": "MK005",
         "nama_mk": "Pengantar Akuntasi",
         "sks": 4,
@@ -50,7 +45,6 @@
         "dosen": "Dosen E"
     },
     {
-        "nomor": 6,
         "kode_mk": "MK006",
         "nama_mk": "Analisa dan Desain Sistem Informasi",
         "sks": 4,
@@ -60,7 +54,6 @@
         "dosen": "Dosen F"
     },
     {
-        "nomor": 7,
         "kode_mk": "MK007",
         "nama_mk": "Bisnis Berbasis Teknologi",
         "sks": 4,
