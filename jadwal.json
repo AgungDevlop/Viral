@@ -11,7 +11,7 @@
     {
         "kode_mk": "MK002",
         "nama_mk": "Jaringan Komputer Lanjut",
-        "sks": 4,
+        "sks": 3,
         "kelas": "Lab J",
         "hari": "Senin",
         "jam": "10:00 - 12:20",
@@ -20,7 +20,7 @@
     {
         "kode_mk": "MK003",
         "nama_mk": "Program Web Framework Data",
-        "sks": 4,
+        "sks": 3,
         "kelas": "Lab C",
         "hari": "Kamis",
         "jam": "10:00 - 12:20",
@@ -29,7 +29,7 @@
     {
         "kode_mk": "MK004",
         "nama_mk": "Tata Kelola dan Audit Teknologi Informasi",
-        "sks": 4,
+        "sks": 3,
         "kelas": "R512",
         "hari": "Kamis",
         "jam": "13:10 - 15:40",
@@ -38,7 +38,7 @@
     {
         "kode_mk": "MK005",
         "nama_mk": "Pengantar Akuntasi",
-        "sks": 4,
+        "sks": 3,
         "kelas": "R404",
         "hari": "Jumat",
         "jam": "09:10 - 11:40",
@@ -47,7 +47,7 @@
     {
         "kode_mk": "MK006",
         "nama_mk": "Analisa dan Desain Sistem Informasi",
-        "sks": 4,
+        "sks": 3,
         "kelas": "R401",
         "hari": "Sabtu",
         "jam": "10:00 - 12:20",
@@ -56,7 +56,7 @@
     {
         "kode_mk": "MK007",
         "nama_mk": "Bisnis Berbasis Teknologi",
-        "sks": 4,
+        "sks": 2,
         "kelas": "R401",
         "hari": "Sabtu",
         "jam": "13:10 - 14:50",
