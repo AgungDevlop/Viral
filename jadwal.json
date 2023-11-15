@@ -6,7 +6,7 @@
         "kelas": "Lab B",
         "hari": "Senin",
         "jam": "07:30 - 10:00",
-        "dosen": "Dosen A"
+        "dosen": "Ir. Anak Agung Gede Bagus Ariana, S.T., M.T."
     },
     {
         "kode_mk": "MK002",
@@ -15,7 +15,7 @@
         "kelas": "Lab J",
         "hari": "Senin",
         "jam": "10:00 - 12:20",
-        "dosen": "Dosen B"
+        "dosen": "Ida Bagus Ary Indra Iswara,S.Kom.,M.Kom"
     },
     {
         "kode_mk": "MK003",
@@ -24,7 +24,7 @@
         "kelas": "Lab C",
         "hari": "Kamis",
         "jam": "10:00 - 12:20",
-        "dosen": "Dosen C"
+        "dosen": "I Komang Arya Ganda Wiguna, S.Kom., M.Cs."
     },
     {
         "kode_mk": "MK004",
@@ -33,7 +33,7 @@
         "kelas": "R512",
         "hari": "Kamis",
         "jam": "13:10 - 15:40",
-        "dosen": "Dosen D"
+        "dosen": "Ayu Manik Dirgayusari, S.Kom., M.MT"
     },
     {
         "kode_mk": "MK005",
@@ -42,7 +42,7 @@
         "kelas": "R404",
         "hari": "Jumat",
         "jam": "09:10 - 11:40",
-        "dosen": "Dosen E"
+        "dosen": "Putu Apriayani P, S.E.,M.Si"
     },
     {
         "kode_mk": "MK006",
@@ -51,7 +51,7 @@
         "kelas": "R401",
         "hari": "Sabtu",
         "jam": "10:00 - 12:20",
-        "dosen": "Dosen F"
+        "dosen": "Aniek Suryanti Kusuma,S.Kom., M.Kom"
     },
     {
         "kode_mk": "MK007",
@@ -60,6 +60,6 @@
         "kelas": "R401",
         "hari": "Sabtu",
         "jam": "13:10 - 14:50",
-        "dosen": "Dosen G"
+        "dosen": "Ayu Gede Chrisna Udayanie, S.Pd.,M.Pd"
     }
 ]
