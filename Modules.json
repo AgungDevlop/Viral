@@ -1,4 +1,10 @@
 [
-    {"name": "Module1", "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/120FPS.sh"},
-    {"name": "Module2", "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/120FPS.sh"}
+  {
+    "name": "Module 120 FPS",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/120FPS.sh"
+  },
+  {
+    "name": "Delete Module",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/Del.sh"
+  }
 ]
