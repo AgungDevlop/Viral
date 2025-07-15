@@ -1,7 +1,23 @@
 [
   {
+    "name": "Module 60FPS",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/60FPS.sh"
+  },
+  {
+    "name": "Module 90FPS",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/90FPS.sh"
+  },
+  {
     "name": "Module 120FPS",
     "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/120FPS.sh"
+  },
+  {
+    "name": "Module 144FPS",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/144FPS.sh"
+  },
+  {
+    "name": "Module 240FPS",
+    "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/240FPS.sh"
   },
   {
     "name": "Stop Module",
