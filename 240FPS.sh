@@ -1,329 +1,124 @@
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Configuration.'
-echo ""
-echo "█▓▒▒░░░FPS INJECTOR░░░▒▒▓█"
-echo ""
-sleep 0.5
-echo "┌───────────────────────────────────────┐"
-echo "│         DEVICE AND HARDWARE INFO      │"
-echo "├───────────────────────────────────────┤"
-echo "│ 📱 Device   : $(getprop ro.product.manufacturer) $(getprop ro.product.model) │"
-echo "│ ⚙️ CPU      : $(getprop ro.board.platform) │"
-echo "│ 🎮 GPU      : $(getprop ro.hardware) │"
-echo "│ 📲 Android  : $(getprop ro.build.version.release) │"
-echo "│ 🔥 Thermal  : $(cat /sys/class/thermal/thermal_zone0/temp)°C │"
-echo "│ 🔰 Kernel   : $(uname -r) │"
-echo "│ 🔹 Build    : $(getprop ro.build.display.id) │"
-echo "│ 🛑 Root     : $(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi) │"
-echo "│ 🔗 SELinux  : $(getenforce) │"
-echo "└───────────────────────────────────────┘"
-echo ""
-echo "█▓▒▒░░░WELCOME TO INSTALASI░░░▒▒▓█"
+#!/system/bin/sh
+# Module By Agung Developer
+# FPS Injector 240FPS - Optimize device for ultra-high refresh rate gaming
+# Created by Agung Developer (https://agungdeveloper.com)
+
+# ANSI color codes for terminal output
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+CYAN="\033[0;36m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
+
+# Display header
+cmd notification post -S bigtext -t 'FPS INJECTOR 240FPS' 'Tag' 'Starting Configuration.' 2>/dev/null || echo -e "${RED}[!] Notification failed, continuing...${RESET}"
+echo -e "${CYAN}█▓▒▒░░░ FPS INJECTOR 240FPS by Agung Developer ░░░▒▒▓█${RESET}"
 echo ""
 sleep 0.5
+
+# Device Information
+echo -e "${YELLOW}DEVICE AND HARDWARE INFO${RESET}"
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo -e "${GREEN}📱 Device :$(getprop ro.product.brand 2>/dev/null || echo 'Unknown') $(getprop ro.product.model 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}⚙️ CPU    :$(getprop ro.hardware 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}🎮 GPU    :$(getprop ro.hardware.egl 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}📲 SDK    :$(getprop ro.build.version.sdk 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔥 Thermal:${CYAN}$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo 'N/A')${RESET}°C"
+sleep 0.2
+echo -e "${GREEN}🔰 Kernel :$(uname -r 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔹 Build  :$(getprop ro.build.display.id 2>/dev/null || echo 'Unknown')${RESET}"
+sleep 0.2
+echo -e "${GREEN}🛑 Root   :$(if [ $(id -u 2>/dev/null) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔗 SELinux:$(getprop ro.build.selinux 2>/dev/null || getenforce 2>/dev/null || echo 'Unknown')${RESET}"
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
 echo ""
-echo " ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣆⠀⠀⠂⠀⠀⠀⠀⠀⠐⠂⠀⠀⢌⠹⣿⣿⣿⠟⠉⠀⠀⠀⠐⠀⠀⠀⠂⠀⠀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠂⠐⠂⠀⠠⠄⠆⠀⣿⣿⡟⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠃⣿⣿⠇⠂⠀⠀⠀⠐⠂⠒⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⢀⠀⠀⣾⣿⣿⣿⣿⣿⣶⣴⣿⣿⡇⠄⠀⠀⠆⣼⣿⣿⣿⣷⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⢀⠠⣾⣿⣿⣿⡆⠀⡀⢀⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢆⠀⢠⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⡀⢀⢀⣿⣿⣿⣿⡏⢰⢀⠀⠀⢸⣿⡏⠠⠄⢀⣀⢸⣿⣿⣿⣿⣤⣬⣥⣭⣥⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢨⡘⠠⠈⠘⠛⠛⠛⠛⡛⠛⣻⣿⣿⡟⠠⡈⣱⡰⢸⣿⣿⣿⣿⡇⠀⠂⢆⡀⣾⣿⡇⠸⠂⠁⠈⠀⠍⡛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠶⣔⡢⠑⣄⠀⢀⠀⡴⢡⣾⣿⣿⣿⡇⡄⠤⠀⢃⠈⠉⠉⠉⠉⢄⡠⠤⣚⢠⣿⣿⣷⡀⠙⠶⣤⢀⠀⠠⠁⠐⠌⢙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢰⣫⢿⣢⠟⣉⣉⣋⣋⣴⣿⣿⣿⣿⣿⠀⡏⢲⢍⣧⣤⡴⣆⣤⣠⣬⣼⠾⣃⣾⣿⣿⣿⣿⣷⣦⣤⣉⠓⠶⢾⣖⡹⣀⡐⠌⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣸⣗⣢⣿⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢸⡰⡾⣯⢠⣥⣤⣥⣤⣬⣤⣶⣾⣿⣿⣿⠿⠿⠿⠿⠿⣿⣿⣿⣶⣦⢹⣖⣧⣟⠅⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣮⡇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⣼⡽⣿⡇⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢐⡎⢟⣞⢡⣿⣿⣿⣿⡇⠾⡝⣻⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣷⣟⣾⠇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡹⣧⣿⣿⢅⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸⣽⢭⣻⢦⡭⠭⡭⠥⡴⣟⣤⣷⠇⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣿⣿⣿⣿⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣽⣯⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡘⠿⣿⣾⣿⣵⣯⣷⣽⣿⣽⢾⣛⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣵⣶⣶⣶⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣵⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣷⣶⣶⣶⣾⣷⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠰⣰⡀⢠⣿⣿⠐⠀⠀⡀⠘⣿⣿⣿⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⡷⠐⠀⠀⢸⣿⡇⠀⠀⢐⢠⡀⠀⠀⡀⢰⣿⡿⠋⠀⠀⢀⠀⢀⠀⠀⢨⠹⣿⡇⠀⢀⡀⠀⡖⢀⠂⡀⠄⡀⢠⣿⠟⠁⢀⠀⠀⡀⠀⠀⠢⠈⠻⣿⣿⠀⠀⠠⡀⠀⠀⠀⠀⠂⢈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠨⢴⡟⢸⣿⡿⠀⠀⠐⢀⡀⢻⣿⡟⡈⡁⡬⢸⣿⣿⣿⣿⣿⣿⣿⡇⠀⠄⠇⣾⣿⠃⢂⠀⠂⣉⣉⣉⣉⣁⣾⣿⠠⠠⢂⢊⣄⣠⣁⠓⠈⢰⢠⣿⣇⣀⣉⣄⠠⢐⠂⢩⣉⣉⣙⢸⡏⠈⠐⡸⢉⣡⣉⣤⠐⠀⢂⢃⣿⡿⠀⢀⢒⢈⣄⣠⣄⠓⠌⠉⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⡽⣷⡇⣾⣿⡇⡧⠄⡉⣢⣀⠸⣿⠃⠥⢿⠇⣾⣿⣿⣿⣿⣿⣿⣿⢁⣱⣢⢂⣿⣿⢀⠢⡼⢰⣿⣿⣿⣿⣿⣿⡇⡰⣥⡴⢸⣿⣿⡏⠸⠶⠶⢸⣿⣿⣿⣿⡇⣎⢸⡄⣼⣿⣿⣿⣿⠃⣀⣑⠃⣿⣿⣿⡟⠀⣅⠜⢸⣿⡇⠁⣶⡼⣸⣿⣿⡇⠀⠦⡀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢐⣻⣽⢃⣿⣿⢀⢿⣄⢟⢺⡞⣄⣿⢀⠮⣶⢠⣿⣿⣿⣿⣿⣿⣿⡟⠰⢢⢝⢸⣿⡇⢨⢥⣱⠘⢋⣙⢉⢩⣿⣿⠇⠧⡩⠇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⣍⣽⠄⣿⣿⣿⣿⡿⢰⣴⣷⢰⣿⣿⣿⡇⢪⣶⡁⣾⣿⠀⡌⣤⡆⣿⣿⣿⠃⣰⣰⡅⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣺⣿⢿⢸⣿⡿⢸⣿⣾⢸⠀⣿⣷⡘⣸⢟⡛⢸⣿⣿⣿⣿⣿⣿⣿⡇⣙⣽⡇⣾⣿⠃⣛⣎⡷⠧⠿⠾⢡⣿⣿⣿⠰⢯⣽⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢸⣼⣻⢸⣿⣿⣿⣿⡇⡰⣺⡉⣸⣿⣿⣿⢡⣿⣿⢱⣿⡟⣨⣵⣿⡑⣤⣒⣶⣺⣷⡟⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣯⣿⡎⣼⣿⡇⣜⣾⡏⣼⣇⢻⣿⣷⣯⣿⡇⣿⡟⣫⣍⡍⣿⣿⣿⢡⣿⣿⢡⣿⡿⢸⢯⣴⢰⣿⣿⣿⣿⣿⣿⡏⢸⣳⢿⣸⣿⣿⡏⣩⣭⢍⢹⣿⣿⣿⣿⡇⣿⡯⡏⣼⣿⣿⣿⣿⢃⣿⣿⡅⣿⣿⣿⡟⣸⢚⣯⢸⣿⡇⣵⣾⣏⣉⡃⣾⣷⡟⢣⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⣿⢳⣿⣿⢢⣿⣿⢇⣿⣿⠸⣿⣿⠿⣿⢠⣿⣇⣿⢿⡇⣿⣿⠟⣼⣻⣿⢸⣿⡇⣿⢯⡟⣸⣿⣿⣿⠿⢿⣿⢣⣿⣿⡇⢿⣿⡿⢇⣷⣺⡇⣾⣿⣿⣿⣿⢃⣷⣿⡇⣿⣿⣿⣿⡿⢸⣿⣿⡸⢿⣿⡿⢇⣿⣿⡇⣿⣿⢱⣿⣿⠧⣿⣿⢸⣿⣿⠜⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣾⣿⣿⢹⣿⡟⣾⣿⣿⢺⣿⣿⣧⢟⣿⣻⣽⢸⣿⡎⣿⣿⣽⢶⣲⢾⣿⣿⢇⣾⣿⢣⣿⣻⣽⣲⣶⣲⣶⡆⣾⣿⡺⣿⣼⣿⣳⢦⣶⣿⣾⡿⣰⣿⣿⣿⣿⡟⣼⣿⣾⢸⣿⣿⣿⣿⣇⢻⣿⣽⣽⣶⣖⣶⣯⣿⡿⣱⣿⡿⣸⣯⣿⢸⣿⣿⡎⣿⣿⣇⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣹⣯⣭⣽⣾⣿⣧⣭⣭⣽⣿⣿⣿⣿⣬⣯⣽⣷⣾⣿⣷⣭⣭⣭⣯⣽⣽⣭⣷⣾⣿⣿⣮⣭⣭⣭⣯⣭⣯⣭⣵⣿⣿⣷⣭⣭⣽⣯⣽⣭⣭⣽⣷⣿⣿⣿⣿⣿⣧⣭⣭⣭⣼⣿⣿⣿⣿⣿⣷⣬⣽⣽⣭⣽⣭⣿⣽⣶⣿⣿⣧⣭⣿⣽⣼⣿⣿⣿⣭⣽⣽⣮⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ "
+echo -e "${CYAN}█▓▒▒░░░ WELCOME TO 240FPS INSTALLATION ░░░▒▒▓█${RESET}"
+echo ""
+sleep 0.5
 
-sleep 3
+# Optimize Refresh Rate and FPS Settings to 240Hz
 (
-#Neww##
-cmd display set-match-content-frame-rate-pref 1
-#Pengaturan Fps 3.0
-settings put system power.dfps.level 0 
-settings put system disable_idle_fps true
-settings put system disable_idle_fps.threshold 1
-settings put system fps.idle_control false
-settings put system metadata_dynfps.disabel 1
-settings put system enable_dpps_dynamic_fps 0
-settings put system display.disable_dynamic_fps 1
-settings put system display.disable_metadata_dynamic_fps 1
-settings put system display.low_framerate_limit 120
-settings put system display.defer_fps_frame_count 2
-settings put system display.refresh_rate 240
-settings put system display.large_comp_hint_fps 240
-settings put system display.enable_pref_hint_for_low_fps 1
-settings put system display.enable_optimal_refresh_rate 1
-settings put system display.enable_idle_content_fps_hint 0
-settings put system display.refresh_rate_changeable 0
-settings put system display.disable_mitigated_fps 1
-settings put system display.idle_time 0
-settings put system display.idle_time_inactive 0
-settings put global dfps.enable false
-settings put global smart_dfps.enable false
-settings put global fps.switch.thermal false
-settings put global fps.switch.default false
-settings put global smart_dfps.idle_fps 240
-settings put global display.idle_default_fps 240
-settings put global smart_dfps.app_switch_fps 240
-settings put global display.fod_monitor_default_fps 240
-#For Device Tranmision 
-setprop debug.mediatek_high_frame_rate_multiple_display_mode 0
-setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 240
-settings put global tran_refresh_rate_video_detector.support 0
-settings put global tran_default_auto_refresh.support 0
-settings put global tran_default_refresh_mode 240
-settings put global tran_low_battery_60hz_refresh_rate.support 0
-settings put global tran_90hz_refresh_rate.not_support 0
-settings put system surfaceflinger.idle_reduce_framerate_enable false
-settings put system surfaceflinger.idle_reduce_framerate_enable no
-settings put global tran_custom_refresh_rate_config.support 1
-settings put global transsion.frame_override.support 0
-settings put global transsion.tran_refresh_rate.support 0
-) > /dev/null 2>&1 &
+    settings put system user_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set user_refresh_rate${RESET}"
+    settings put system min_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set min_refresh_rate${RESET}"
+    settings put system max_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set max_refresh_rate${RESET}"
+    settings put system peak_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set peak_refresh_rate${RESET}"
+    settings put system display_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set display_refresh_rate${RESET}"
+    settings put global refresh_rate_mode 1 2>/dev/null || echo -e "${RED}[!] Failed to set refresh_rate_mode${RESET}"
+    settings put global refresh_rate_switching_type 1 2>/dev/null || echo -e "${RED}[!] Failed to set refresh_rate_switching_type${RESET}"
+    settings put global refresh_rate_force_high 1 2>/dev/null || echo -e "${RED}[!] Failed to set refresh_rate_force_high${RESET}"
+    setprop debug.hwui.refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set debug.hwui.refresh_rate${RESET}"
+    setprop debug.sf.perf_mode 1 2>/dev/null || echo -e "${RED}[!] Failed to set debug.sf.perf_mode${RESET}"
+    settings put global surface_flinger.use_content_detection_for_refresh_rate false 2>/dev/null || echo -e "${RED}[!] Failed to set surface_flinger.use_content_detection_for_refresh_rate${RESET}"
+    settings put system game_driver_min_frame_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set game_driver_min_frame_rate${RESET}"
+    settings put system game_driver_max_frame_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set game_driver_max_frame_rate${RESET}"
+    settings put system game_driver_vsync_enable 0 2>/dev/null || echo -e "${RED}[!] Failed to set game_driver_vsync_enable${RESET}"
+    settings put system game_driver_fps_limit 240 2>/dev/null || echo -e "${RED}[!] Failed to set game_driver_fps_limit${RESET}"
+    settings put system disable_idle_fps true 2>/dev/null || echo -e "${RED}[!] Failed to set disable_idle_fps${RESET}"
+    settings put system display.disable_dynamic_fps 1 2>/dev/null || echo -e "${RED}[!] Failed to set display.disable_dynamic_fps${RESET}"
+    settings put system display.enable_optimal_refresh_rate 1 2>/dev/null || echo -e "${RED}[!] Failed to set display.enable_optimal_refresh_rate${RESET}"
+    setprop debug.sf.latch_unsignaled 1 2>/dev/null || echo -e "${RED}[!] Failed to set debug.sf.latch_unsignaled${RESET}"
+    setprop debug.sf.high_fps_early_phase_offset_ns 2000000 2>/dev/null || echo -e "${RED}[!] Failed to set debug.sf.high_fps_early_phase_offset_ns${RESET}"
+    setprop debug.sf.high_fps_late_app_phase_offset_ns 500000 2>/dev/null || echo -e "${RED}[!] Failed to set debug.sf.high_fps_late_app_phase_offset_ns${RESET}"
+    setprop debug.graphics.game_default_frame_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set debug.graphics.game_default_frame_rate${RESET}"
+    setprop debug.graphics.game_default_frame_rate.disabled false 2>/dev/null || echo -e "${RED}[!] Failed to set debug.graphics.game_default_frame_rate.disabled${RESET}"
+    settings put system thermal_limit_refresh_rate 240 2>/dev/null || echo -e "${RED}[!] Failed to set thermal_limit_refresh_rate${RESET}"
+) &
 
-(
-#Stable Optimize Fps
-setprop debug.sys.display.fps 240
-setprop debug.sys.display_refresh_rate 240
-setprop debug.sys.display.refresh_rate 240
-setprop debug.sys.game.minfps 240
-setprop debug.sys.game.maxfps 240
-setprop debug.sys.game.minframerate 240
-setprop debug.sys.game.maxframerate 240
-setprop debug.sys.min_refresh_rate 240
-setprop debug.sys.max_refresh_rate 240
-setprop debug.sys.peak_refresh_rate 240
-setprop debug.sys.sf.fps 240
-setprop debug.sys.smartfps 1
-setprop debug.sys.display.min_refresh_rate 240
-setprop debug.sys.vsync_optimization_enable false
-setprop debug.sys.hwui.dyn_vsync 0
-setprop debug.sys.vsync false
-setprop debug.sys.hwui.fps_mode 1
-setprop debug.sys.first.frame.accelerates true
-setprop debug.sys.fps_unlock_allowed 240
-setprop debug.sys.display.max_fps 240
-setprop debug.sys.video.max.fps 240
-setprop debug.sys.surfaceflinger.idle_reduce_framerate_enable false
-) > /dev/null 2>&1 &
-
-(
-#Stable Optimize Fps Device Tranmisi
-setprop sys.display.fps 240
-setprop sys.display_refresh_rate 240
-setprop sys.display.refresh_rate 240
-setprop sys.game.minfps 240
-setprop sys.game.maxfps 240
-setprop sys.game.minframerate 240
-setprop sys.game.maxframerate 240
-setprop sys.min_refresh_rate 240
-setprop sys.max_refresh_rate 240
-setprop sys.peak_refresh_rate 240
-setprop sys.sf.fps 240
-setprop sys.smartfps 1
-setprop sys.display.min_refresh_rate 240
-setprop sys.vsync_optimization_enable false
-setprop sys.hwui.dyn_vsync 0
-setprop sys.vsync false
-setprop sys.hwui.fps_mode 1
-setprop sys.first.frame.accelerates true
-setprop sys.fps_unlock_allowed 240
-setprop sys.display.max_fps 240
-setprop sys.video.max.fps 240
-setprop sys.surfaceflinger.idle_reduce_framerate_enable false
-) > /dev/null 2>&1 &
-
-(
-# Optimize Refresh Rate
-settings put global refresh_rate_mode 1
-settings put global refresh_rate_switching_type 1
-settings put global refresh_rate_force_high 1
-setprop debug.hwui.refresh_rate 240
-setprop debug.sf.perf_mode 1
-settings put global surface_flinger.use_content_detection_for_refresh_rate false
-settings put global media.recorder-max-base-layer-fps 240
-settings put global vendor.fps.switch.default true
-settings put system vendor.disable_idle_fps true
-settings put global vendor.display.default_fps 240
-settings put system vendor.display.idle_default_fps 240
-settings put system vendor.display.enable_optimize_refresh 1
-settings put system vendor.display.video_or_camera_fps.support true
-setprop debug.hwui.refresh_rate 240
-setprop debug.sf.set_idle_timer_ms 500
-setprop debug.sf.latch_unsignaled 1
-setprop debug.sf.high_fps_early_phase_offset_ns 2000000
-setprop debug.sf.high_fps_late_app_phase_offset_ns 500000
-settings put system game_driver_min_frame_rate  240
-settings put system game_driver_max_frame_rate  240
-settings put system game_driver_power_saving_mode 0
-settings put system game_driver_frame_skip_enable 0
-settings put system game_driver_vsync_enable 0
-settings put system game_driver_gpu_mode 1
-settings put system game_driver_gpu_mode 1
-settings put system game_driver_fps_limit 240
-) > /dev/null 2>&1 &
-
-(
-#Fps Injector 
-setprop debug.graphics.game_default_frame_rate 240
-setprop debug.graphics.game_default_frame_rate.disabled false
-setprop persist.sys.gpu_perf_mode 1
-setprop debug.mtk.powerhal.hint.bypass 1
-setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable false
-setprop sys.surfaceflinger.idle_reduce_framerate_enable false
-setprop debug.sf.perf_mode 1
-settings put global refresh.active 1
-setprop debug.hwui.disable_vsync true
-setprop debug.performance.profile 1
-setprop debug.perf.tuning 1
-) > /dev/null 2>&1 &
-
-(
-#New Tweak Fps Lock
-settings put system user_refresh_rate 240
-settings put system fps_limit 240
-settings put system max_refresh_rate_for_ui 240
-settings put system hwui_refresh_rate 240
-settings put system display_refresh_rate 240
-settings put system max_refresh_rate_for_gaming 240
-#Mengatur margin Fps
-settings put system fstb_target_fps_margin_high_fps 20
-settings put system fstb_target_fps_margin_low_fps 20
-settings put system gcc_fps_margin 10
-#remove Refresh rate
-settings put system tran_low_battery_60hz_refresh_rate.support 0
-# Lock refresh rate to 240 Hz
-settings put system vendor.display.refresh_rate 240
-settings put system user_refresh_rate 1
-settings put system sf.refresh_rate 240
-settings put secure user_refresh_rate 1
-settings put secure miui_refresh_rate 240
-settings put system min_frame_rate 240
-settings put system max_frame_rate 240
-settings put system tran_refresh_mode 240
-settings put system last_tran_refresh_mode_in_refresh_setting 240
-settings put global min_fps 240
-settings put global max_fps 240
-settings put system tran_need_recovery_refresh_mode 240
-settings put system display_min_refresh_rate 240
-settings put system min_refresh_rate 240
-settings put system max_refresh_rate 240
-settings put system peak_refresh_rate 240
-settings put secure refresh_rate_mode 240
-settings put system thermal_limit_refresh_rate 240
-settings put system NV_FPSLIMIT 240
-settings put system fps.limit.is.now locked
-) > /dev/null 2>&1 &
-
-echo "Menonaktifkan optimalisasi baterai untuk game yang support 120 FPS dan 90 FPS"
-
-# Game support 120 FPS
+# Disable Battery Optimizations for Games
+echo -e "${YELLOW}Optimizing battery for supported games...${RESET}"
 for app in \
-com.netease.newspike \
-com.miHoYo.GenshinImpact \
-com.garena.game.codm \
-com.riotgames.league.wildrift \
-com.mobile.legends \
-com.tencent.ig \
-com.mobile.legends.hwag \
-com.mobile.legends.mi \
-com.garena.game.df \
-com.tencent.tmgp.sgame \
-com.roblox.client
+    com.netease.newspike \
+    com.miHoYo.GenshinImpact \
+    com.garena.game.codm \
+    com.riotgames.league.wildrift \
+    com.mobile.legends \
+    com.tencent.ig \
+    com.mobile.legends.hwag \
+    com.mobile.legends.mi \
+    com.garena.game.df \
+    com.tencent.tmgp.sgame \
+    com.roblox.client
 do
-    dumpsys deviceidle whitelist +$app
-    echo "[✔] $app (120FPS) tidak dibatasi oleh sistem!"
+    dumpsys deviceidle whitelist +$app 2>/dev/null && echo -e "${GREEN}[✔] $app (120FPS) optimized!${RESET}" || echo -e "${RED}[!] Failed to optimize $app (120FPS)${RESET}"
+    sleep 0.1
 done
-# Game support 90 FPS
 for app in \
-com.dts.freefireth \
-com.dts.freefiremax \
-com.garena.game.kgvn
+    com.dts.freefireth \
+    com.dts.freefiremax \
+    com.garena.game.kgvn
 do
-    dumpsys deviceidle whitelist +$app
-    echo "[✔] $app (90FPS) tidak dibatasi oleh sistem!"
+    dumpsys deviceidle whitelist +$app 2>/dev/null && echo -e "${GREEN}[✔] $app (90FPS) optimized!${RESET}" || echo -e "${RED}[!] Failed to optimize $app (90FPS)${RESET}"
+    sleep 0.1
 done
 
-echo""
-echo "MATIKAN THERMAL LIMIT FPS  [✓]"
-echo""
+# Final Output
+echo ""
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo -e "${GREEN}[✓] Thermal Limit FPS Disabled${RESET}"
 sleep 0.5
-echo""
-echo "PAKSA REFRESH RATE MAXIMAL [✓]"
+echo -e "${GREEN}[✓] 240Hz Refresh Rate Applied${RESET}"
 sleep 0.5
-echo""
-echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
-echo""
+echo -e "${GREEN}[✓] FPS Injection & Optimization Complete${RESET}"
 sleep 0.5
-echo""
-echo "ALL DONE SET [✓]"
-echo""
+echo -e "${GREEN}[✓] All Settings Applied Successfully${RESET}"
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo ""
+echo -e "${YELLOW}‼️ ENJOY YOUR OPTIMIZED 240FPS GAMING EXPERIENCE ‼️${RESET}"
+echo ""
 sleep 0.5
-echo""
-echo "‼️SELAMAT MENIKMATI ‼️"
-echo""
+echo -e "${CYAN}Module By Agung Developer${RESET}"
+echo -e "${CYAN}Visit: https://agungdeveloper.com${RESET}"
+echo ""
 sleep 0.5
-echo""
-echo "DEV LIMIT GAMING GANTENG"
-echo""
+echo -e "${RED}⚠️ DO NOT REBOOT DEVICE ⚠️${RESET}"
+echo ""
 sleep 0.5
-echo""
-echo "DONT REBOOT"
-echo""
-sleep 0.5
-echo""
-echo "THANKS FOR USING"
-echo""
-sleep 0.5
-echo""
-echo "█▓▒▒░░░THANKS FOR USING MODULE ░░░▒▒▓█"
-echo""
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCES ACTIVE.'
+echo -e "${CYAN}█▓▒▒░░░ THANKS FOR USING FPS INJECTOR 240FPS ░░░▒▒▓█${RESET}"
+echo ""
+cmd notification post -S bigtext -t 'FPS INJECTOR 240FPS' 'Tag' 'SUCCESSFULLY ACTIVATED.' 2>/dev/null || echo -e "${RED}[!] Notification failed${RESET}"
