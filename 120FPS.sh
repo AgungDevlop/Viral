@@ -1,8 +1,8 @@
 #!/system/bin/sh
 # Created by Agung Developer
 
-# Notifikasi awal
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Configuration.'
+# Notifikasi awal dengan kredit
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Configuration. Created by Agung Developer'
 
 # Tampilkan informasi perangkat
 echo "Device Info:"
@@ -174,5 +174,5 @@ do
     echo "[✔] $app (90FPS) tidak dibatasi."
 done
 
-# Notifikasi akhir
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCES ACTIVE.'
+# Notifikasi akhir dengan kredit
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCES ACTIVE. Created by Agung Developer'
