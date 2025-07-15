@@ -1,24 +1,45 @@
 #!/system/bin/sh
 # Module By Agung Developer
+# FPS Injector Uninstall - Restore default device settings
+# Created by Agung Developer (https://agungdeveloper.com)
 
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Configuration.'
+# ANSI color codes for terminal output
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+CYAN="\033[0;36m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
+
+# Display header
+cmd notification post -S bigtext -t 'LOCK FPS PRO BY AGUNG DEV' 'Tag' 'Starting Uninstallation.'
+echo -e "${CYAN}█▓▒▒░░░ FPS MODULE UNINSTALL by Agung Developer ░░░▒▒▓█${RESET}"
 echo ""
-echo "█▓▒▒░░░FPS INJECTOR░░░▒▒▓█"
+sleep 0.5
+
+# Device Information
+echo -e "${YELLOW}DEVICE AND HARDWARE INFO${RESET}"
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo -e "${GREEN}📱 Device :$(getprop ro.product.brand) $(getprop ro.product.model)${RESET}"
+sleep 0.2
+echo -e "${GREEN}⚙️ CPU    :$(getprop ro.hardware)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🎮 GPU    :$(getprop ro.hardware.egl)${RESET}"
+sleep 0.2
+echo -e "${GREEN}📲 SDK    :$(getprop ro.build.version.sdk)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔥 Thermal:${CYAN}$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null Holders
+|| echo 'N/A')${RESET}°C"
+sleep 0.2
+echo -e "${GREEN}🔰 Kernel :$(uname -r)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔹 Build  :$(getprop ro.build.display.id)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🛑 Root   :$(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)${RESET}"
+sleep 0.2
+echo -e "${GREEN}🔗 SELinux:$(getenforce)${RESET}"
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
 echo ""
-sleep 0.5
-echo "DEVICE AND HARDWARE INFO"
-sleep 0.5
-echo "DEVICE $(getprop ro.product.brand)"
-sleep 0.5
-echo "MODEL $(getprop ro.product.model)"
-sleep 0.5
-echo "CPU $(getprop ro.hardware)"
-sleep 0.5
-echo "GPU $(getprop ro.hardware.egl)"
-sleep 0.5
-echo "SDK $(getprop ro.build.version.sdk)"
-echo ""
-echo "█▓▒▒░░░WELCOME TO UNINSTALL░░░▒▒▓█"
+echo -e "${CYAN}█▓▒▒░░░ WELCOME TO UNINSTALLATION ░░░▒▒▓█${RESET}"
 echo ""
 sleep 0.5
 
@@ -47,11 +68,11 @@ sleep 0.5
     setprop debug.sf.high_fps_late_app_phase_offset_ns ""
     setprop debug.graphics.game_default_frame_rate ""
     setprop debug.graphics.game_default_frame_rate.disabled ""
-    settings-put system thermal_limit_refresh_rate
+    settings delete system thermal_limit_refresh_rate
 ) > /dev/null 2>&1 &
 
 # Remove Battery Optimization Whitelist
-echo "Menghapus whitelist optimalisasi baterai untuk game yang support 120 FPS dan 90 FPS"
+echo -e "${YELLOW}Restoring battery optimization for games...${RESET}"
 for app in \
     com.netease.newspike \
     com.miHoYo.GenshinImpact \
@@ -65,29 +86,30 @@ for app in \
     com.tencent.tmgp.sgame \
     com.roblox.client
 do
-    dumpsys deviceidle whitelist -$app 2>/dev/null && echo "[✔] $app (120FPS) telah dikembalikan ke pengaturan default sistem."
+    dumpsys deviceidle whitelist -$app 2>/dev/null && echo -e "${GREEN}[✔] $app (120FPS) restored to default.${RESET}"
+    sleep 0.1
 done
 for app in \
     com.dts.freefireth \
     com.dts.freefiremax \
     com.garena.game.kgvn
 do
-    dumpsys deviceidle whitelist -$app 2>/dev/null && echo "[✔] $app (90FPS) telah dikembalikan ke pengaturan default sistem."
+    dumpsys deviceidle whitelist -$app 2>/dev/null && echo -e "${GREEN}[✔] $app (90FPS) restored to default.${RESET}"
+    sleep 0.1
 done
+
+# Final Output
+echo ""
+echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo -e "${GREEN}[✓] All Settings Removed${RESET}"
+sleep 0.5
+echo -e "${YELLOW}‼️ PLEASE REBOOT DEVICE TO APPLY CHANGES ‼️${RESET}"
 echo ""
 sleep 0.5
-echo "DELETE ALL STRING [✓]"
+echo -e "${CYAN}Module By Agung Developer${RESET}"
+echo -e "${CYAN}Visit: https://agungdeveloper.com${RESET}"
 echo ""
 sleep 0.5
-echo "‼️REBOOT DEVICE ‼️"
+echo -e "${CYAN}█▓▒▒░░░ UNINSTALLATION COMPLETE ░░░▒▒▓█${RESET}"
 echo ""
-sleep 0.5
-echo "Module By Agung Developer"
-echo ""
-sleep 0.5
-echo "DONE UNINSTALL"
-echo ""
-sleep 0.5
-echo "█▓▒▒░░░THANKS FOR USING MODULE ░░░▒▒▓█"
-echo ""
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCESS DELETE.'
+cmd notification post -S bigtext -t 'LOCK FPS PRO BY AGUNG DEV' 'Tag' 'SUCCESSFULLY UNINSTALLED.'
