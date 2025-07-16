@@ -1,117 +1,130 @@
 #!/system/bin/sh
-# Module By Agung Developer
-# FPS Injector Uninstall - Restore default device settings
-# Created by Agung Developer (https://agungdeveloper.com)
+# DEL Script by Agung Developer
+# Resets FPS Injector settings to default
+# Watermark: Agung Developer
 
-# ANSI color codes for terminal output
-RED="\033[0;31m"
-GREEN="\033[0;32m"
-CYAN="\033[0;36m"
-YELLOW="\033[1;33m"
-RESET="\033[0m"
+# Display initial notification
+cmd notification post -S bigtext -t 'FPS INJECTOR RESET' 'Tag' 'Starting Reset Configuration by Agung Developer'
 
-# Display header
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Uninstallation.'
-echo -e "${CYAN}█▓▒▒░░░ FPS INJECTOR UNINSTALL by Agung Developer ░░░▒▒▓█${RESET}"
+# Header with watermark
+echo ""
+echo "█▓▒▒░░░FPS RESET by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Device Information
-echo -e "${YELLOW}DEVICE AND HARDWARE INFO${RESET}"
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
-echo -e "${GREEN}📱 Device :$(getprop ro.product.brand) $(getprop ro.product.model)${RESET}"
-sleep 0.2
-echo -e "${GREEN}⚙️ CPU    :$(getprop ro.hardware)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🎮 GPU    :$(getprop ro.hardware.egl)${RESET}"
-sleep 0.2
-echo -e "${GREEN}📲 SDK    :$(getprop ro.build.version.sdk)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔥 Thermal:${CYAN}$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo 'N/A')${RESET}°C"
-sleep 0.2
-echo -e "${GREEN}🔰 Kernel :$(uname -r)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔹 Build  :$(getprop ro.build.display.id)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🛑 Root   :$(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔗 SELinux:$(getenforce)${RESET}"
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+# Device and hardware info
+echo "┌───────────────────────────────┐"
+echo "│   DEVICE & HARDWARE INFO      │"
+echo "├───────────────────────────────┤"
+echo "│ 📱 Device: $(getprop ro.product.manufacturer) $(getprop ro.product.model)"
+echo "│ ⚙️ CPU: $(getprop ro.board.platform)"
+echo "│ 🎮 GPU: $(getprop ro.hardware)"
+echo "│ 📲 Android: $(getprop ro.build.version.release)"
+echo "│ 🔥 Thermal: $(cat /sys/class/thermal/thermal_zone0/temp)°C"
+echo "│ 🔰 Kernel: $(uname -r)"
+echo "│ 🔹 Build: $(getprop ro.build.display.id)"
+echo "│ 🛑 Root: $(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)"
+echo "│ 🔗 SELinux: $(getenforce)"
+echo "└───────────────────────────────┘"
 echo ""
-echo -e "${CYAN}█▓▒▒░░░ WELCOME TO UNINSTALLATION ░░░▒▒▓█${RESET}"
+echo "█▓▒▒░░░RESETTING SETTINGS by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Reset FPS and Refresh Rate Settings
-echo -e "${YELLOW}Resetting FPS and refresh rate settings...${RESET}"
+# Reset FPS and refresh rate settings
 (
-    # Check and reset standard settings
-    settings get system user_refresh_rate >/dev/null 2>&1 && settings put system user_refresh_rate 0
-    settings get system min_refresh_rate >/dev/null 2>&1 && settings put system min_refresh_rate 0
-    settings get system max_refresh_rate >/dev/null 2>&1 && settings put system max_refresh_rate 0
-    settings get system peak_refresh_rate >/dev/null 2>&1 && settings put system peak_refresh_rate 60
-    settings get system display_refresh_rate >/dev/null 2>&1 && settings put system display_refresh_rate 0
-    settings get global refresh_rate_mode >/dev/null 2>&1 && settings put global refresh_rate_mode 0
-    settings get global refresh_rate_switching_type >/dev/null 2>&1 && settings put global refresh_rate_switching_type 0
-    settings get global refresh_rate_force_high >/dev/null 2>&1 && settings put global refresh_rate_force_high 0
-    settings get global surface_flinger.use_content_detection_for_refresh_rate >/dev/null 2>&1 && settings put global surface_flinger.use_content_detection_for_refresh_rate true
-    settings get system game_driver_min_frame_rate >/dev/null 2>&1 && settings put system game_driver_min_frame_rate 0
-    settings get system game_driver_max_frame_rate >/dev/null 2>&1 && settings put system game_driver_max_frame_rate 0
-    settings get system天地游戏优化器_帧率限制 >/dev/null 2>&1 && settings put system game_driver_fps_limit 0
-    settings get system disable_idle_fps >/dev/null 2>&1 && settings put system disable_idle_fps false
-    settings get system display.disable_dynamic_fps >/dev/null 2>&1 && settings put system display.disable_dynamic_fps 0
-    settings get system display.enable_optimal_refresh_rate >/dev/null 2>&1 && settings put system display.enable_optimal_refresh_rate 0
-    settings get system thermal_limit_refresh_rate >/dev/null 2>&1 && settings put system thermal_limit_refresh_rate 0
+  # Reset display settings
+  settings reset system power.dfps.level
+  settings reset system disable_idle_fps
+  settings reset system fps.idle_control
+  settings reset system metadata_dynfps.disabel
+  settings reset system display.disable_dynamic_fps
+  settings reset system display.low_framerate_limit
+  settings reset system display.refresh_rate
+  settings reset system display.enable_optimal_refresh_rate
+  settings reset system display.idle_time
+  settings reset global dfps.enable
+  settings reset global smart_dfps.enable
+  settings reset global smart_dfps.idle_fps
+  settings reset global display.idle_default_fps
 
-    # Reset debug properties
-    setprop debug.hwui.refresh_rate ""
-    setprop debug.sf.perf_mode ""
-    setprop debug.sf.latch_unsignaled ""
-    setprop debug.sf.high_fps_early_phase_offset_ns ""
-    setprop debug.sf.high_fps_late_app_phase_offset_ns ""
-    setprop debug.graphics.game_default_frame_rate ""
-    setprop debug.graphics.game_default_frame_rate.disabled ""
-) > /dev/null 2>&1 && echo -e "${GREEN}[✔] Display settings restored to default${RESET}" || echo -e "${RED}[✗] Failed to reset some display settings${RESET}"
+  # Reset MediaTek-specific settings
+  setprop debug.mediatek_high_frame_rate_multiple_display_mode ""
+  setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold ""
 
-# Remove Battery Optimization Whitelist
-echo -e "${YELLOW}Restoring battery optimization for games...${RESET}"
+  # Reset Transsion-specific settings
+  settings reset global tran_refresh_rate_video_detector.support
+  settings reset global tran_default_auto_refresh.support
+  settings reset global tran_default_refresh_mode
+  settings reset global tran_60hz_refresh_rate.not_support
+  settings reset global tran_90hz_refresh_rate.not_support
+  settings reset global tran_120hz_refresh_rate.not_support
+  settings reset global tran_144hz_refresh_rate.not_support
+  settings reset global tran_240hz_refresh_rate.not_support
+  settings reset global tran_custom_refresh_rate_config.support
+  settings reset global transsion.frame_override.support
+  settings reset global transsion.tran_refresh_rate.support
+
+  # Reset SurfaceFlinger settings
+  setprop debug.sf.perf_mode 0
+  setprop debug.sf.latch_unsignaled 0
+  setprop debug.sf.high_fps_early_phase_offset_ns ""
+  setprop debug.sf.high_fps_late_app_phase_offset_ns ""
+  setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable ""
+
+  # Reset HWUI and performance settings
+  setprop debug.hwui.refresh_rate ""
+  setprop debug.hwui.disable_vsync false
+  setprop debug.performance.profile 0
+  setprop debug.perf.tuning 0
+  setprop persist.sys.gpu_perf_mode 0
+  setprop debug.mtk.powerhal.hint.bypass ""
+
+  # Reset refresh rate locks
+  settings reset system user_refresh_rate
+  settings reset system fps_limit
+  settings reset system max_refresh_rate_for_ui
+  settings reset system max_refresh_rate_for_gaming
+  settings reset system min_refresh_rate
+  settings reset system max_refresh_rate
+  settings reset system peak_refresh_rate
+  settings reset system thermal_limit_refresh_rate
+  settings reset system NV_FPSLIMIT
+  settings reset secure refresh_rate_mode
+  settings reset system display_min_refresh_rate
+) > /dev/null 2>&1 &
+
+# Reset game-specific optimizations (re-enable battery restrictions)
+echo "Restoring battery optimizations for supported games..."
 for app in \
-    com.netease.newspike \
-    com.miHoYo.GenshinImpact \
-    com.garena.game.codm \
-    com.riotgames.league.wildrift \
-    com.mobile.legends \
-    com.tencent.ig \
-    com.mobile.legends.hwag \
-    com.mobile.legends.mi \
-    com.garena.game.df \
-    com.tencent.tmgp.sgame \
-    com.roblox.client
+  com.netease.newspike \
+  com.miHoYo.GenshinImpact \
+  com.garena.game.codm \
+  com.riotgames.league.wildrift \
+  com.mobile.legends \
+  com.tencent.ig \
+  com.dts.freefireth \
+  com.dts.freefiremax \
+  com.garena.game.kgvn \
+  com.tencent.tmgp.sgame \
+  com.roblox.client
 do
-    dumpsys deviceidle whitelist -$app 2>/dev/null && echo -e "${GREEN}[✔] $app (120FPS) restored to default${RESET}" || echo -e "${RED}[✗] Failed to restore $app (120FPS)${RESET}"
-    sleep 0.1
-done
-for app in \
-    com.dts.freefireth \
-    com.dts.freefiremax \
-    com.garena.game.kgvn
-do
-    dumpsys deviceidle whitelist -$app 2>/dev/null && echo -e "${GREEN}[✔] $app (90FPS) restored to default${RESET}" || echo -e "${RED}[✗] Failed to restore $app (90FPS)${RESET}"
-    sleep 0.1
+  dumpsys deviceidle whitelist -$app
+  echo "[✔] $app battery optimization restored!"
 done
 
-# Final Output
+# Final status messages with watermark
 echo ""
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
-echo -e "${GREEN}[✓] All Settings Removed${RESET}"
-sleep 0.5
-echo -e "${YELLOW}‼️ PLEASE REBOOT DEVICE TO APPLY CHANGES ‼️${RESET}"
+echo "█▓▒▒░░░RESET STATUS by Agung Developer░░░▒▒▓█"
+echo "RESTORE DISPLAY SETTINGS [✓]"
+echo "RESTORE THERMAL LIMITS [✓]"
+echo "RESTORE GAME OPTIMIZATIONS [✓]"
+echo "ALL SETTINGS RESET [✓]"
 echo ""
-sleep 0.5
-echo -e "${CYAN}Module By Agung Developer${RESET}"
-echo -e "${CYAN}Visit: https://agungdeveloper.com${RESET}"
+echo "‼️ SYSTEM RESTORED BY AGUNG DEVELOPER ‼️"
+echo "REBOOT DEVICE TO ENSURE STABILITY"
+echo "█▓▒▒░░░THANKS FOR USING FPS RESET by Agung Developer░░░▒▒▓█"
 echo ""
-sleep 0.5
-echo -e "${CYAN}█▓▒▒░░░ UNINSTALLATION COMPLETE ░░░▒▒▓█${RESET}"
-echo ""
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCESSFULLY UNINSTALLED.'
+
+# Final notification
+cmd notification post -S bigtext -t 'FPS INJECTOR RESET' 'Tag' 'SETTINGS SUCCESSFULLY RESET by Agung Developer'
