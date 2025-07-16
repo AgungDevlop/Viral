@@ -1,269 +1,127 @@
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting Configuration.'
-echo ""
-echo "█▓▒▒░░░FPS INJECTOR░░░▒▒▓█"
-echo ""
-sleep 0.5
-echo "┌───────────────────────────────────────┐"
-echo "│         DEVICE AND HARDWARE INFO      │"
-echo "├───────────────────────────────────────┤"
-echo "│ 📱 Device   : $(getprop ro.product.manufacturer) $(getprop ro.product.model) │"
-echo "│ ⚙️ CPU      : $(getprop ro.board.platform)     │"
-echo "│ 🎮 GPU      : $(getprop ro.hardware)           │"
-echo "│ 📲 Android  : $(getprop ro.build.version.release)         │"
-echo "│ 🔥 Thermal  : $(cat /sys/class/thermal/thermal_zone0/temp)°C    │"
-echo "│ 🔰 Kernel   : $(uname -r)                 │"
-echo "│ 🔹 Build    : $(getprop ro.build.display.id)        │"
-echo "│ 🛑 Root     : $(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)                 │"
-echo "│ 🔗 SELinux  : $(getenforce)                │"
-echo "└───────────────────────────────────────┘"
-echo ""
-echo "█▓▒▒░░░WELCOME TO INSTALASI░░░▒▒▓█"
-echo ""
-sleep 0.5
-echo ""
-echo "================================================================="
-echo "   ____                       _         ____  _            _   "
-echo "  / ___| __ _ _ __ ___  _ __ | | ___   |  _ \(_) ___ _ __ | |_ "
-echo " | |  _ / _` | '_ ` _ \| '_ \| |/ _ \  | | | | |/ _ \ '_ \| __|"
-echo " | |_| | (_| | | | | | | |_) | |  __/  | |_| | |  __/ | | | |_ "
-echo "  \____|\__,_|_| |_| |_| .__/|_|\___|  |____/|_|\___|_| |_|\__|"
-echo "                       |_|                                     "
-echo "================================================================="
-echo "                  Agung Developer"
-echo "================================================================="
-echo ""
-sleep 3
+#!/system/bin/sh
+# 60FPS Module by Agung Developer
+# Optimized for enforcing 60 FPS and disabling thermal limits
+# Watermark: Agung Developer
 
-# Memulai konfigurasi dalam background untuk efisiensi
+# Display initial notification
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting 60FPS Configuration by Agung Developer'
+
+# Header with watermark
+echo ""
+echo "█▓▒▒░░░60FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo ""
+sleep 0.5
+
+# Device and hardware info
+echo "┌───────────────────────────────┐"
+echo "│   DEVICE & HARDWARE INFO      │"
+echo "├───────────────────────────────┤"
+echo "│ 📱 Device: $(getprop ro.product.manufacturer) $(getprop ro.product.model)"
+echo "│ ⚙️ CPU: $(getprop ro.board.platform)"
+echo "│ 🎮 GPU: $(getprop ro.hardware)"
+echo "│ 📲 Android: $(getprop ro.build.version.release)"
+echo "│ 🔥 Thermal: $(cat /sys/class/thermal/thermal_zone0/temp)°C"
+echo "│ 🔰 Kernel: $(uname -r)"
+echo "│ 🔹 Build: $(getprop ro.build.display.id)"
+echo "│ 🛑 Root: $(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)"
+echo "│ 🔗 SELinux: $(getenforce)"
+echo "└───────────────────────────────┘"
+echo ""
+echo "█▓▒▒░░░INSTALLATION by Agung Developer░░░▒▒▓█"
+echo ""
+sleep 0.5
+
+# Core FPS and refresh rate optimizations
 (
-    # Pengaturan Refresh Rate dan FPS
-    cmd display set-match-content-frame-rate-pref 1
-    settings put system power.dfps.level 0
-    settings put system disable_idle_fps true
-    settings put system disable_idle_fps.threshold 1
-    settings put system fps.idle_control false
-    settings put system metadata_dynfps.disabel 1
-    settings put system enable_dpps_dynamic_fps 0
-    settings put system display.disable_dynamic_fps 1
-    settings put system display.disable_metadata_dynamic_fps 1
-    settings put system display.low_framerate_limit 60
-    settings put system display.defer_fps_frame_count 2
-    settings put system display.refresh_rate 60
-    settings put system display.large_comp_hint_fps 60
-    settings put system display.enable_pref_hint_for_low_fps 1
-    settings put system display.enable_optimal_refresh_rate 1
-    settings put system display.enable_idle_content_fps_hint 0
-    settings put system display.refresh_rate_changeable 0
-    settings put system display.disable_mitigated_fps 1
-    settings put system display.idle_time 0
-    settings put system display.idle_time_inactive 0
-    settings put global dfps.enable false
-    settings put global smart_dfps.enable false
-    settings put global fps.switch.thermal false
-    settings put global fps.switch.default false
-    settings put global smart_dfps.idle_fps 60
-    settings put global display.idle_default_fps 60
-    settings put global smart_dfps.app_switch_fps 60
-    settings put global display.fod_monitor_default_fps 60
+  # Display settings
+  cmd display set-match-content-frame-rate-pref 1
+  settings put system power.dfps.level 0
+  settings put system disable_idle_fps true
+  settings put system fps.idle_control false
+  settings put system metadata_dynfps.disabel 1
+  settings put system display.disable_dynamic_fps 1
+  settings put system display.low_framerate_limit 60
+  settings put system display.refresh_rate 60
+  settings put system display.enable_optimal_refresh_rate 1
+  settings put system display.idle_time 0
+  settings put global dfps.enable false
+  settings put global smart_dfps.enable false
+  settings put global smart_dfps.idle_fps 60
+  settings put global display.idle_default_fps 60
 
-    # Pengaturan untuk Perangkat Transsion (jika berlaku)
-    setprop debug.mediatek_high_frame_rate_multiple_display_mode 0
-    setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 60
-    settings put global tran_refresh_rate_video_detector.support 0
-    settings put global tran_default_auto_refresh.support 0
-    settings put global tran_default_refresh_mode 60
-    settings put global tran_low_battery_60hz_refresh_rate.support 1
-    settings put global tran_90hz_refresh_rate.not_support 0
-    settings put system surfaceflinger.idle_reduce_framerate_enable false
-    settings put system surfaceflinger.idle_reduce_framerate_enable no
-    settings put global tran_custom_refresh_rate_config.support 1
-    settings put global transsion.frame_override.support 0
-    settings put global transsion.tran_refresh_rate.support 0
+  # MediaTek-specific settings
+  setprop debug.mediatek_high_frame_rate_multiple_display_mode 0
+  setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 60
 
-    # Optimalisasi FPS Global
-    setprop debug.sys.display.fps 60
-    setprop debug.sys.display_refresh_rate 60
-    setprop debug.sys.display.refresh_rate 60
-    setprop debug.sys.game.minfps 60
-    setprop debug.sys.game.maxfps 60
-    setprop debug.sys.game.minframerate 60
-    setprop debug.sys.game.maxframerate 60
-    setprop debug.sys.min_refresh_rate 60
-    setprop debug.sys.max_refresh_rate 60
-    setprop debug.sys.peak_refresh_rate 60
-    setprop debug.sys.sf.fps 60
-    setprop debug.sys.smartfps 1
-    setprop debug.sys.display.min_refresh_rate 60
-    setprop debug.sys.vsync_optimization_enable false
-    setprop debug.sys.hwui.dyn_vsync 0
-    setprop debug.sys.vsync false
-    setprop debug.sys.hwui.fps_mode 1
-    setprop debug.sys.first.frame.accelerates true
-    setprop debug.sys.fps_unlock_allowed 60
-    setprop debug.sys.display.max_fps 60
-    setprop debug.sys.video.max.fps 60
-    setprop debug.sys.surfaceflinger.idle_reduce_framerate_enable false
+  # Transsion-specific settings
+  settings put global tran_refresh_rate_video_detector.support 0
+  settings put global tran_default_auto_refresh.support 0
+  settings put global tran_default_refresh_mode 60
+  settings put global tran_60hz_refresh_rate.not_support 1
+  settings put global tran_custom_refresh_rate_config.support 1
+  settings put global transsion.frame_override.support 0
+  settings put global transsion.tran_refresh_rate.support 0
 
-    # Optimalisasi FPS untuk Perangkat Transsion (props sys)
-    setprop sys.display.fps 60
-    setprop sys.display_refresh_rate 60
-    setprop sys.display.refresh_rate 60
-    setprop sys.game.minfps 60
-    setprop sys.game.maxfps 60
-    setprop sys.game.minframerate 60
-    setprop sys.game.maxframerate 60
-    setprop sys.min_refresh_rate 60
-    setprop sys.max_refresh_rate 60
-    setprop sys.peak_refresh_rate 60
-    setprop sys.sf.fps 60
-    setprop sys.smartfps 1
-    setprop sys.display.min_refresh_rate 60
-    setprop sys.vsync_optimization_enable false
-    setprop sys.hwui.dyn_vsync 0
-    setprop sys.vsync false
-    setprop sys.hwui.fps_mode 1
-    setprop sys.first.frame.accelerates true
-    setprop sys.fps_unlock_allowed 60
-    setprop sys.display.max_fps 60
-    setprop sys.video.max.fps 60
-    setprop sys.surfaceflinger.idle_reduce_framerate_enable false
+  # SurfaceFlinger optimizations
+  setprop debug.sf.perf_mode 1
+  setprop debug.sf.latch_unsignaled 1
+  setprop debug.sf.high_fps_early_phase_offset_ns 2000000
+  setprop debug.sf.high_fps_late_app_phase_offset_ns 500000
+  setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable false
 
-    # Optimalisasi Refresh Rate Tambahan
-    settings put global surface_flinger.use_content_detection_for_refresh_rate false
-    settings put global media.recorder-max-base-layer-fps 60
-    settings put global vendor.fps.switch.default true
-    settings put system vendor.disable_idle_fps true
-    settings put global vendor.display.default_fps 60
-    settings put system vendor.display.idle_default_fps 60
-    settings put system vendor.display.enable_optimize_refresh 1
-    settings put system vendor.display.video_or_camera_fps.support true
-    setprop debug.hwui.refresh_rate 60
-    setprop debug.sf.set_idle_timer_ms 500
-    setprop debug.sf.latch_unsignaled 1
-    setprop debug.sf.high_fps_early_phase_offset_ns 2000000
-    setprop debug.sf.high_fps_late_app_phase_offset_ns 500000
-    settings put system game_driver_min_frame_rate 60
-    settings put system game_driver_max_frame_rate 60
-    settings put system game_driver_power_saving_mode 0
-    settings put system game_driver_frame_skip_enable 0
-    settings put system game_driver_vsync_enable 0
-    settings put system game_driver_gpu_mode 1
-    settings put system game_driver_fps_limit 60
+  # HWUI and performance tweaks
+  setprop debug.hwui.refresh_rate 60
+  setprop debug.hwui.disable_vsync true
+  setprop debug.performance.profile 1
+  setprop debug.perf.tuning 1
+  setprop persist.sys.gpu_perf_mode 1
+  setprop debug.mtk.powerhal.hint.bypass 1
 
-    # FPS Injector (Pengaturan Performansi Umum)
-    setprop debug.graphics.game_default_frame_rate 60
-    setprop debug.graphics.game_default_frame_rate.disabled false
-    setprop persist.sys.gpu_perf_mode 1
-    setprop debug.mtk.powerhal.hint.bypass 1
-    setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable false
-    setprop sys.surfaceflinger.idle_reduce_framerate_enable false
-    setprop debug.sf.perf_mode 1
-    settings put global refresh.active 1
-    setprop debug.hwui.disable_vsync true
-    setprop debug.performance.profile 1
-    setprop debug.perf.tuning 1
-
-    # Pengunci FPS
-    settings put system user_refresh_rate 60
-    settings put system fps_limit 60
-    settings put system max_refresh_rate_for_ui 60
-    settings put system hwui_refresh_rate 60
-    settings put system display_refresh_rate 60
-    settings put system max_refresh_rate_for_gaming 60
-    # Mengatur margin Fps (nilai 20 dan 10 mungkin perlu disesuaikan atau diuji)
-    settings put system fstb_target_fps_margin_high_fps 20
-    settings put system fstb_target_fps_margin_low_fps 20
-    settings put system gcc_fps_margin 10
-    # Menghapus pengaturan refresh rate yang berpotensi konflik
-    settings put global tran_low_battery_60hz_refresh_rate.support 0
-    # Mengunci refresh rate ke 60 Hz secara eksplisit
-    settings put display.refresh_rate 60
-    settings put system sf.refresh_rate 60
-    setprop persist.vendor.display.refresh_rate 60
-    settings put system user_refresh_rate 60
-    settings put secure user_refresh_rate 60
-    settings put secure miui_refresh_rate 60 # Mengubah ke 60 FPS
-    settings put system min_frame_rate 60
-    settings put system max_frame_rate 60
-    settings put system tran_refresh_mode 60
-    settings put system last_tran_refresh_mode_in_refresh_setting 60
-    settings put global min_fps 60
-    settings put global max_fps 60
-    settings put system tran_need_recovery_refresh_mode 60
-    settings put system display_min_refresh_rate 60
-    settings put system min_refresh_rate 60
-    settings put system max_refresh_rate 60
-    settings put system peak_refresh_rate 60
-    settings put secure refresh_rate_mode 60
-    settings put system user_refresh_rate 60
-    settings put system thermal_limit_refresh_rate 60
-    settings put system NV_FPSLIMIT 60
-    settings put system fps.limit.is.now locked # Ini lebih ke indikator daripada perintah efektif
-
+  # Lock refresh rate to 60 Hz
+  settings put system user_refresh_rate 60
+  settings put system fps_limit 60
+  settings put system max_refresh_rate_for_ui 60
+  settings put system max_refresh_rate_for_gaming 60
+  settings put system min_refresh_rate 60
+  settings put system max_refresh_rate 60
+  settings put system peak_refresh_rate 60
+  settings put system thermal_limit_refresh_rate 60
+  settings put system NV_FPSLIMIT 60
+  settings put secure refresh_rate_mode 60
+  settings put system display_min_refresh_rate 60
 ) > /dev/null 2>&1 &
 
-echo "Menonaktifkan optimalisasi baterai untuk game..."
-
-# Game support 120 FPS (diasumsikan akan berjalan pada 60 FPS setelah dioptimasi)
+# Game-specific optimizations
+echo "Disabling battery optimizations for supported games..."
 for app in \
-com.netease.newspike \
-com.miHoYo.GenshinImpact \
-com.garena.game.codm \
-com.riotgames.league.wildrift \
-com.mobile.legends \
-com.tencent.ig \
-com.mobile.legends.hwag \
-com.mobile.legends.mi \
-com.garena.game.df \
-com.tencent.tmgp.sgame \
-com.roblox.client
+  com.netease.newspike \
+  com.miHoYo.GenshinImpact \
+  com.garena.game.codm \
+  com.riotgames.league.wildrift \
+  com.mobile.legends \
+  com.tencent.ig \
+  com.dts.freefireth \
+  com.dts.freefiremax \
+  com.garena.game.kgvn \
+  com.tencent.tmgp.sgame \
+  com.roblox.client
 do
-    dumpsys deviceidle whitelist +$app > /dev/null 2>&1
-    echo "[✔] $app tidak dibatasi oleh sistem!"
+  dumpsys deviceidle whitelist +$app
+  echo "[✔] $app (60FPS) optimized by Agung Developer!"
 done
 
-# Game support 90 FPS (diasumsikan akan berjalan pada 60 FPS setelah dioptimasi)
-for app in \
-com.dts.freefireth \
-com.dts.freefiremax \
-com.garena.game.kgvn
-do
-    dumpsys deviceidle whitelist +$app > /dev/null 2>&1
-    echo "[✔] $app tidak dibatasi oleh sistem!"
-done
-
-echo""
-echo "MATIKAN THERMAL LIMIT FPS [✓]"
-echo""
-sleep 0.5
-echo""
-echo "PAKSA REFRESH RATE MAXIMAL [✓]"
-sleep 0.5
-echo""
-echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
-echo""
-sleep 0.5
-echo""
-echo "ALL DONE SET [✓]"
-echo""
-sleep 0.5
-echo""
-echo "‼️SELAMAT MENIKMATI ‼️"
-echo""
-sleep 0.5
-echo""
-echo "AGUNG DEVELOPER"
-echo""
-sleep 0.5
-echo""
-echo "JANGAN REBOOT DEVICE ANDA"
-echo""
-sleep 0.5
-echo""
-echo "TERIMA KASIH TELAH MENGGUNAKAN SCRIPT INI"
-echo""
-sleep 0.5
-echo""
-echo "█▓▒▒░░░TERIMA KASIH TELAH MENGGUNAKAN MODULE INI░░░▒▒▓█"
+# Final status messages with watermark
 echo ""
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'SUCCES ACTIVE.'
+echo "█▓▒▒░░░OPTIMIZATION STATUS by Agung Developer░░░▒▒▓█"
+echo "MATIKAN THERMAL LIMIT FPS [✓]"
+echo "PAKSA REFRESH RATE MAXIMAL [✓]"
+echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
+echo "ALL SETTINGS APPLIED [✓]"
+echo ""
+echo "‼️ ENJOY GAMING WITH AGUNG DEVELOPER ‼️"
+echo "DO NOT REBOOT DEVICE"
+echo "█▓▒▒░░░THANKS FOR USING 60FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo ""
+
+# Final notification
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' '60FPS SUCCESSFULLY ACTIVATED by Agung Developer'
