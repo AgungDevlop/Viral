@@ -1,121 +1,129 @@
 #!/system/bin/sh
-# Module By Agung Developer
-# FPS Injector - Optimize device for high refresh rate gaming
-# Created by Agung Developer (https://agungdeveloper.com)
+# 120FPS Module by Agung Developer
+# Optimized for enforcing 120 FPS and disabling thermal limits
+# Watermark: Agung Developer
 
-# ANSI color codes for terminal output
-RED="\033[0;31m"
-GREEN="\033[0;32m"
-CYAN="\033[0;36m"
-YELLOW="\033[1;33m"
-RESET="\033[0m"
+# Display initial notification
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting 120FPS Configuration by Agung Developer'
 
-# Display header
-cmd notification post -S bigtext -t 'LOCK FPS PRO BY AGUNG DEV' 'Tag' 'Starting Configuration.'
-echo -e "${CYAN}█▓▒▒░░░ FPS INJECTOR by Agung Developer ░░░▒▒▓█${RESET}"
+# Header with watermark
+echo ""
+echo "█▓▒▒░░░120FPS INJECTOR by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Device Information
-echo -e "${YELLOW}DEVICE AND HARDWARE INFO${RESET}"
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
-echo -e "${GREEN}📱 Device :$(getprop ro.product.brand) $(getprop ro.product.model)${RESET}"
-sleep 0.2
-echo -e "${GREEN}⚙️ CPU    :$(getprop ro.hardware)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🎮 GPU    :$(getprop ro.hardware.egl)${RESET}"
-sleep 0.2
-echo -e "${GREEN}📲 SDK    :$(getprop ro.build.version.sdk)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔥 Thermal:${CYAN}$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo 'N/A')${RESET}°C"
-sleep 0.2
-echo -e "${GREEN}🔰 Kernel :$(uname -r)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔹 Build  :$(getprop ro.build.display.id)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🛑 Root   :$(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)${RESET}"
-sleep 0.2
-echo -e "${GREEN}🔗 SELinux:$(getenforce)${RESET}"
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+# Device and hardware info
+echo "┌───────────────────────────────┐"
+echo "│   DEVICE & HARDWARE INFO      │"
+echo "├───────────────────────────────┤"
+echo "│ 📱 Device: $(getprop ro.product.manufacturer) $(getprop ro.product.model)"
+echo "│ ⚙️ CPU: $(getprop ro.board.platform)"
+echo "│ 🎮 GPU: $(getprop ro.hardware)"
+echo "│ 📲 Android: $(getprop ro.build.version.release)"
+echo "│ 🔥 Thermal: $(cat /sys/class/thermal/thermal_zone0/temp)°C"
+echo "│ 🔰 Kernel: $(uname -r)"
+echo "│ 🔹 Build: $(getprop ro.build.display.id)"
+echo "│ 🛑 Root: $(if [ $(id -u) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)"
+echo "│ 🔗 SELinux: $(getenforce)"
+echo "└───────────────────────────────┘"
 echo ""
-echo -e "${CYAN}█▓▒▒░░░ WELCOME TO INSTALLATION ░░░▒▒▓█${RESET}"
+echo "█▓▒▒░░░INSTALLATION by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Optimize Refresh Rate and FPS Settings
+# Core FPS and refresh rate optimizations
 (
-    settings put system user_refresh_rate 120
-    settings put system min_refresh_rate 120
-    settings put system max_refresh_rate 120
-    settings put system peak_refresh_rate 120
-    settings put system display_refresh_rate 120
-    settings put global refresh_rate_mode 1
-    settings put global refresh_rate_switching_type 1
-    settings put global refresh_rate_force_high 1
-    setprop debug.sf.perf_mode 1
-    setprop debug.hwui.refresh_rate 120
-    setprop debug.sf.latch_unsignaled 1
-    setprop debug.sf.high_fps_early_phase_offset_ns 2000000
-    setprop debug.sf.high_fps_late_app_phase_offset_ns 500000
-    settings put system game_driver_min_frame_rate 120
-    settings put system game_driver_max_frame_rate 120
-    settings put system game_driver_vsync_enable 0
-    settings put system game_driver_fps_limit 120
-    settings put system disable_idle_fps true
-    settings put system display.disable_dynamic_fps 1
-    settings put system display.enable_optimal_refresh_rate 1
-    settings put global surface_flinger.use_content_detection_for_refresh_rate false
+  # Display settings
+  cmd display set-match-content-frame-rate-pref 1
+  settings put system power.dfps.level 0
+  settings put system disable_idle_fps true
+  settings put system fps.idle_control false
+  settings put system metadata_dynfps.disabel 1
+  settings put system display.disable_dynamic_fps 1
+  settings put system display.low_framerate_limit 120
+  settings put system display.refresh_rate 120
+  settings put system display.enable_optimal_refresh_rate 1
+  settings put system display.idle_time 0
+  settings put global dfps.enable false
+  settings put global smart_dfps.enable false
+  settings put global smart_dfps.idle_fps 120
+  settings put global display.idle_default_fps 120
+
+  # MediaTek-specific settings
+  setprop debug.mediatek_high_frame_rate_multiple_display_mode 0
+  setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 120
+
+  # Transsion-specific settings
+  settings put global tran_refresh_rate_video_detector.support 0
+  settings put global tran_default_auto_refresh.support 0
+  settings put global tran_default_refresh_mode 120
+  settings put global tran_120hz_refresh_rate.not_support 1
+  settings put global tran_custom_refresh_rate_config.support 1
+  settings put global transsion.frame_override.support 0
+  settings put global transsion.tran_refresh_rate.support 0
+
+  # SurfaceFlinger optimizations
+  setprop debug.sf.perf_mode 1
+  setprop debug.sf.latch_unsignaled 1
+  setprop debug.sf.high_fps_early_phase_offset_ns 1500000
+  setprop debug.sf.high_fps_late_app_phase_offset_ns 400000
+  setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable false
+
+  # HWUI and performance tweaks
+  setprop debug.hwui.refresh_rate 120
+  setprop debug.hwui.disable_vsync true
+  setprop debug.performance.profile 1
+  setprop debug.perf.tuning 1
+  setprop persist.sys.gpu_perf_mode 1
+  setprop debug.mtk.powerhal.hint.bypass 1
+
+  # Lock refresh rate to 120 Hz
+  settings put system user_refresh_rate 120
+  settings put system fps_limit 120
+  settings put system max_refresh_rate_for_ui 120
+  settings put system max_refresh_rate_for_gaming 120
+  settings put system min_refresh_rate 120
+  settings put system max_refresh_rate 120
+  settings put system peak_refresh_rate 120
+  settings put system thermal_limit_refresh_rate 120
+  settings put system NV_FPSLIMIT 120
+  settings put secure refresh_rate_mode 120
+  settings put system display_min_refresh_rate 120
 ) > /dev/null 2>&1 &
 
-# Disable Battery Optimizations for Games
-echo -e "${YELLOW}Optimizing battery for supported games...${RESET}"
+# Game-specific optimizations
+echo "Disabling battery optimizations for supported games..."
 for app in \
-    com.netease.newspike \
-    com.miHoYo.GenshinImpact \
-    com.garena.game.codm \
-    com.riotgames.league.wildrift \
-    com.mobile.legends \
-    com.tencent.ig \
-    com.mobile.legends.hwag \
-    com.mobile.legends.mi \
-    com.garena.game.df \
-    com.tencent.tmgp.sgame \
-    com.roblox.client
+  com.netease.newspike \
+  com.miHoYo.GenshinImpact \
+  com.garena.game.codm \
+  com.riotgames.league.wildrift \
+  com.mobile.legends \
+  com.tencent.ig \
+  com.dts.freefireth \
+  com.dts.freefiremax \
+  com.garena.game.kgvn \
+  com.tencent.tmgp.sgame \
+  com.roblox.client
 do
-    dumpsys deviceidle whitelist +$app 2>/dev/null && echo -e "${GREEN}[✔] $app (120FPS) optimized!${RESET}"
-    sleep 0.1
-done
-for app in \
-    com.dts.freefireth \
-    com.dts.freefiremax \
-    com.garena.game.kgvn
-do
-    dumpsys deviceidle whitelist +$app 2>/dev/null && echo -e "${GREEN}[✔] $app (90FPS) optimized!${RESET}"
-    sleep 0.1
+  dumpsys deviceidle whitelist +$app
+  echo "[✔] $app (
+
+120FPS) optimized by Agung Developer!"
 done
 
-# Final Output
+# Final status messages with watermark
 echo ""
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
-echo -e "${GREEN}[✓] Thermal Limit FPS Disabled${RESET}"
-sleep 0.5
-echo -e "${GREEN}[✓] Max Refresh Rate Forced${RESET}"
-sleep 0.5
-echo -e "${GREEN}[✓] FPS Injection & Optimization Complete${RESET}"
-sleep 0.5
-echo -e "${GREEN}[✓] All Settings Applied Successfully${RESET}"
-echo -e "${CYAN}═══════════════════════════════════════${RESET}"
+echo "█▓▒▒░░░OPTIMIZATION STATUS by Agung Developer░░░▒▒▓█"
+echo "MATIKAN THERMAL LIMIT FPS [✓]"
+echo "PAKSA REFRESH RATE MAXIMAL [✓]"
+echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
+echo "ALL SETTINGS APPLIED [✓]"
 echo ""
-echo -e "${YELLOW}‼️ ENJOY YOUR OPTIMIZED GAMING EXPERIENCE ‼️${RESET}"
+echo "‼️ ENJOY GAMING WITH AGUNG DEVELOPER ‼️"
+echo "DO NOT REBOOT DEVICE"
+echo "█▓▒▒░░░THANKS FOR USING 120FPS INJECTOR by Agung Developer░░░▒▒▓█"
 echo ""
-sleep 0.5
-echo -e "${CYAN}Module By Agung Developer${RESET}"
-echo -e "${CYAN}Visit: https://agungdeveloper.com${RESET}"
-echo ""
-sleep 0.5
-echo -e "${RED}⚠️ DO NOT REBOOT DEVICE ⚠️${RESET}"
-echo ""
-sleep 0.5
-echo -e "${CYAN}█▓▒▒░░░ THANKS FOR USING FPS INJECTOR ░░░▒▒▓█${RESET}"
-echo ""
-cmd notification post -S bigtext -t 'LOCK FPS PRO BY AGUNG DEV' 'Tag' 'SUCCESSFULLY ACTIVATED.'
+
+# Final notification
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' '120FPS SUCCESSFULLY ACTIVATED by Agung Developer'
