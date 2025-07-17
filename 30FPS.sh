@@ -1,14 +1,14 @@
 #!/system/bin/sh
-# 30FPS Module by Agung Developer
-# Optimized for enforcing 30 FPS and disabling thermal limits
+# 45FPS Module by Agung Developer
+# Optimized for enforcing 45 FPS and disabling thermal limits
 # Watermark: Agung Developer
 
 # Display initial notification
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting 30FPS Configuration by Agung Developer'
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting 45FPS Configuration by Agung Developer'
 
 # Header with watermark
 echo ""
-echo "█▓▒▒░░░30FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo "█▓▒▒░░░45FPS INJECTOR by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
@@ -40,23 +40,23 @@ sleep 0.5
   settings put system fps.idle_control false
   settings put system metadata_dynfps.disabel 1
   settings put system display.disable_dynamic_fps 1
-  settings put system display.low_framerate_limit 30
-  settings put system display.refresh_rate 30
+  settings put system display.low_framerate_limit 45
+  settings put system display.refresh_rate 45
   settings put system display.enable_optimal_refresh_rate 1
   settings put system display.idle_time 0
   settings put global dfps.enable false
   settings put global smart_dfps.enable false
-  settings put global smart_dfps.idle_fps 30
-  settings put global display.idle_default_fps 30
+  settings put global smart_dfps.idle_fps 45
+  settings put global display.idle_default_fps 45
 
   # MediaTek-specific settings
   setprop debug.mediatek_high_frame_rate_multiple_display_mode 0
-  setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 30
+  setprop debug.mediatek_high_frame_rate_sf_set_big_core_fps_threshold 45
 
   # Transsion-specific settings
   settings put global tran_refresh_rate_video_detector.support 0
   settings put global tran_default_auto_refresh.support 0
-  settings put global tran_default_refresh_mode 30
+  settings put global tran_default_refresh_mode 45
   settings put global tran_60hz_refresh_rate.not_support 1
   settings put global tran_custom_refresh_rate_config.support 1
   settings put global transsion.frame_override.support 0
@@ -70,25 +70,25 @@ sleep 0.5
   setprop persist.sys.surfaceflinger.idle_reduce_framerate_enable false
 
   # HWUI and performance tweaks
-  setprop debug.hwui.refresh_rate 30
+  setprop debug.hwui.refresh_rate 45
   setprop debug.hwui.disable_vsync true
   setprop debug.performance.profile 1
   setprop debug.perf.tuning 1
   setprop persist.sys.gpu_perf_mode 1
   setprop debug.mtk.powerhal.hint.bypass 1
 
-  # Lock refresh rate to 30 Hz
-  settings put system user_refresh_rate 30
-  settings put system fps_limit 30
-  settings put system max_refresh_rate_for_ui 30
-  settings put system max_refresh_rate_for_gaming 30
-  settings put system min_refresh_rate 30
-  settings put system max_refresh_rate 30
-  settings put system peak_refresh_rate 30
-  settings put system thermal_limit_refresh_rate 30
-  settings put system NV_FPSLIMIT 30
-  settings put secure refresh_rate_mode 30
-  settings put system display_min_refresh_rate 30
+  # Lock refresh rate to 45 Hz
+  settings put system user_refresh_rate 45
+  settings put system fps_limit 45
+  settings put system max_refresh_rate_for_ui 45
+  settings put system max_refresh_rate_for_gaming 45
+  settings put system min_refresh_rate 45
+  settings put system max_refresh_rate 45
+  settings put system peak_refresh_rate 45
+  settings put system thermal_limit_refresh_rate 45
+  settings put system NV_FPSLIMIT 45
+  settings put secure refresh_rate_mode 45
+  settings put system display_min_refresh_rate 45
 ) > /dev/null 2>&1 &
 
 # Game-specific optimizations
@@ -107,7 +107,7 @@ for app in \
   com.roblox.client
 do
   dumpsys deviceidle whitelist +$app
-  echo "[✔] $app (30FPS) optimized by Agung Developer!"
+  echo "[✔] $app (45FPS) optimized by Agung Developer!"
 done
 
 # Final status messages with watermark
@@ -120,8 +120,8 @@ echo "ALL SETTINGS APPLIED [✓]"
 echo ""
 echo "‼️ ENJOY GAMING WITH AGUNG DEVELOPER ‼️"
 echo "DO NOT REBOOT DEVICE"
-echo "█▓▒▒░░░THANKS FOR USING 30FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo "█▓▒▒░░░THANKS FOR USING 45FPS INJECTOR by Agung Developer░░░▒▒▓█"
 echo ""
 
 # Final notification
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' '30FPS SUCCESSFULLY ACTIVATED by Agung Developer'
+cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' '45FPS SUCCESSFULLY ACTIVATED by Agung Developer'
