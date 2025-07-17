@@ -10,21 +10,6 @@ echo "█▓▒▒░░░RESTORE DEVICE░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Display current device info
-echo "┌───────────────────────────────┐"
-echo "│ 📱 Device: $(getprop ro.product.manufacturer) $(getprop ro.product.model)"
-echo "│ ⚙️ CPU: $(getprop ro.board.platform)"
-echo "│ 🎮 Hardware: $(getprop ro.hardware)"
-echo "│ 📲 Android: $(getprop ro.build.version.release)"
-echo "│ 🔥 Thermal: $(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo 'N/A')°C"
-echo "│ 🔰 Kernel: $(uname -r)"
-echo "│ 🔹 Build: $(getprop ro.build.display.id)"
-echo "│ 🛑 Root: $(if [ $(id -u 2>/dev/null) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)"
-echo "│ 🔗 SELinux: $(getenforce)"
-echo "└───────────────────────────────┘"
-echo ""
-sleep 0.5
-
 # Reset device properties
 resetprop debug.performance.tuning
 resetprop debug.sf.hw
