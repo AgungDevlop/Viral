@@ -10,19 +10,96 @@ echo "█▓▒▒░░░FAKE DEVICE IPHONE 16 PRO MAX░░░▒▒▓█"
 echo ""
 sleep 0.5
 
-# Display current device info
-echo "┌───────────────────────────────┐"
-echo "│ 📱 Device: $(getprop ro.product.manufacturer) $(getprop ro.product.model)"
-echo "│ ⚙️ CPU: $(getprop ro.board.platform)"
-echo "│ 🎮 Hardware: $(getprop ro.hardware)"
-echo "│ 📲 OS: $(getprop ro.build.version.release)"
-echo "│ 🔥 Thermal: $(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo 'N/A')°C"
-echo "│ 🔰 Kernel: $(uname -r)"
-echo "│ 🔹 Build: $(getprop ro.build.display.id)"
-echo "│ 🛑 Root: $(if [ $(id -u 2>/dev/null) -eq 0 ]; then echo 'Yes'; else echo 'No'; fi)"
-echo "│ 🔗 SELinux: $(getenforce)"
-echo "└───────────────────────────────┘"
-echo ""
+# Display device info
+echo "MENAMPILKAN INFO DEVICE KESELURUHAN"
+sleep 3.0
+echo "Device Name:"
+settings get global device_name
+echo "System Model:"
+settings get system model
+echo "Product Model:"
+settings get global ro.product.model
+echo "Product System Model:"
+settings get global ro.product.system.model
+echo "Product Vendor Model:"
+settings get global ro.product.vendor.model
+echo "Product ODM Model:"
+settings get global ro.product.odm.model
+echo "Product Product Model:"
+settings get global ro.product.product.model
+echo "Manufacturer:"
+settings get global ro.product.manufacturer
+echo "Product Vendor Manufacturer:"
+settings get global ro.product.vendor.manufacturer
+echo "Product ODM Manufacturer:"
+settings get global ro.product.odm.manufacturer
+echo "CPU ABI List (Vendor):"
+settings get global ro.vendor.product.cpu.abilist
+echo "CPU ABI:"
+settings get global ro.product.cpu.abi
+echo "CPU ABI List:"
+settings get global ro.product.cpu.abilist
+echo "CPU Name:"
+settings get global ro.product.cpu.name
+echo "Product Brand:"
+settings get global ro.product.brand
+echo "Product Vendor Brand:"
+settings get global ro.product.vendor.brand
+echo "Product ODM Brand:"
+settings get global ro.product.odm.brand
+echo "Product Device:"
+settings get global ro.product.device
+echo "Market Name:"
+settings get global product.marketname
+echo "Product System Market Name:"
+settings get global ro.product.system.marketname
+echo "Product Vendor Market Name:"
+settings get global ro.product.vendor.marketname
+echo "Product ODM Market Name:"
+settings get global ro.product.odm.marketname
+echo "Product Product Market Name:"
+settings get global ro.product.product.marketname
+echo "SoC Vendor:"
+settings get global ro.soc.vendor
+echo "SoC Vendor (Recheck):"
+settings get global ro.soc.vendor
+echo "SoC Model:"
+settings get global ro.soc.model
+echo "SoC Manufacturer:"
+settings get global ro.soc.manufacturer
+echo "Hardware Chip Name:"
+settings get global ro.hardware.chipname
+echo "Vendor Chip Name:"
+settings get global ro.vendor.qti.chip_name
+echo "System Ext Brand:"
+settings get global ro.product.system_ext.brand
+echo "System Ext Device:"
+settings get global ro.product.system_ext.device
+echo "System Ext Manufacturer:"
+settings get global ro.product.system_ext.manufacturer
+echo "System Ext Market Name:"
+settings get global ro.product.system_ext.marketname
+echo "Vendor Certificate:"
+settings get global ro.product.vendor.cert
+echo "Product Aliases:"
+settings get global ro.product.Aliases
+echo "TF Model Number:"
+settings get global ro.build.tf.modelnumber
+echo "Touch Sampling Boost:"
+settings get global persist.sys.touch.sampling_boost
+echo "Display High Refresh Rate:"
+settings get global persist.sys.display_high_refresh_rate
+echo "Smooth Motion Enabled:"
+settings get global persist.vendor.display.use_smooth_motion
+echo "Wide Color Display Support:"
+settings get global ro.surface_flinger.has_wide_color_display
+echo "Native Display Mode:"
+settings get global persist.sys.sf.native_mode
+echo "Touch Sensitivity:"
+settings get global persist.sys.touch.sensitivity
+echo "Touch Responsiveness:"
+settings get global persist.sys.touch.responsiveness
+sleep 3.0
 
 # Apple logo ASCII art
 echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣴⣶⡆⠀⠀⠀⠀⠀"
@@ -39,7 +116,7 @@ echo "⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄"
 echo "⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏"
 echo "⠀⠀⠚⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀"
 echo "⠀⠀⠀⠀⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠇⠀⠀"
-echo "⠀⠀⠀⠀⠀⠘⠻⣿⠿⠛⠋⠉⠉⠙⠛⠛⠛⠿⠛⠁⠀⠀⠀"
+echo "⠀⠀⠀⠀⠀⠘⠻⣿⠿⠛⠋⠉⠉⠙⠛⠛⠿⠛⠁⠀⠀⠀"
 echo ""
 sleep 0.5
 
@@ -211,7 +288,7 @@ settings put global ro.product.system_ext.marketname "iPhone 16 Pro Max"
 echo ""
 echo "ALL SET PROSES [✓]"
 echo ""
-echo "SUKSES SPOOFER IPHONE 16 PRO MAX"
+echo "SELAMAT DEVICE ANDA SUDAH DISET KE IPHONE 16 PRO MAX 🔥🔥"
 echo ""
 echo "█▓▒▒░░░FAKE DEVICE ACTIVATED░░░▒▒▓█"
 echo ""
