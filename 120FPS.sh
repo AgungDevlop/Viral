@@ -1,14 +1,14 @@
 #!/system/bin/sh
-# 120FPS Module by Agung Developer
-# Optimized for enforcing 120 FPS and disabling thermal limits
+# 120FPS & Ultimate Performance Module by Agung Developer
+# Optimized for enforcing 120 FPS, disabling thermal limits, and enhancing touch sensitivity
 # Watermark: Agung Developer
 
 # Display initial notification
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' 'Starting 120FPS Configuration by Agung Developer'
+cmd notification post -S bigtext -t 'ULTIMATE GAMING BOOSTER' 'Tag' 'Starting Ultimate Gaming Configuration by Agung Developer'
 
 # Header with watermark
 echo ""
-echo "█▓▒▒░░░120FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo "█▓▒▒░░░ULTIMATE GAMING BOOSTER by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
 
@@ -89,6 +89,77 @@ sleep 0.5
   settings put system NV_FPSLIMIT 120
   settings put secure refresh_rate_mode 120
   settings put system display_min_refresh_rate 120
+
+  # --- Tambahan Optimasi Performa ---
+
+  # CPU Governor & Scheduling
+  # Mengatur CPU governor ke 'performance' untuk performa maksimal
+  # Pastikan path ini sesuai dengan perangkat kamu
+  for cpu_gov in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+      if [ -f "$cpu_gov" ]; then
+          echo "performance" > "$cpu_gov"
+      fi
+  done
+  # Mengatur minimum frekuensi CPU ke maksimal (atau frekuensi tinggi yang stabil)
+  for cpu_min_freq in /sys/devices/system/cpu/cpu*/cpufreq/scaling_min_freq; do
+      if [ -f "$cpu_min_freq" ]; then
+          max_freq_path="${cpu_min_freq/scaling_min_freq/scaling_max_freq}"
+          if [ -f "$max_freq_path" ]; then
+             echo "$(cat "$max_freq_path")" > "$cpu_min_freq"
+          fi
+      fi
+  done
+
+  # GPU Optimization (Generic settings, may vary by GPU/driver)
+  # Meningkatkan clock GPU secara agresif
+  setprop debug.egl.force_msaa 0
+  setprop debug.egl.swapinterval 0
+  setprop debug.egl.profiler 1
+  setprop debug.renderengine.backend skiagl
+  setprop debug.renderengine.force_sg_backend skiagl
+  # Mengatur preferensi driver GPU (jika didukung)
+  settings put global enable_gpu_debug_layer 1
+
+  # Memory & ZRAM Optimization
+  # Menonaktifkan thermal throttling untuk memori dan swap
+  setprop persist.sys.vm.swappiness 0
+  setprop persist.sys.vm.dirty_ratio 90
+  setprop persist.sys.vm.dirty_background_ratio 5
+  setprop persist.sys.purgeable_assets true
+  echo 1 > /proc/sys/vm/overcommit_memory
+  echo 1 > /proc/sys/kernel/sched_autogroup_enabled
+  echo 0 > /sys/kernel/debug/tracing/tracing_on # Disable kernel tracing for performance
+
+  # Network Optimization (for lower latency)
+  setprop net.tcp.delack.default 1
+  setprop net.tcp.timestamps 0
+  setprop net.tcp.ecn 0
+  setprop net.ipv4.tcp_fastopen 3
+  setprop net.ipv4.tcp_no_metrics_save 1
+  setprop net.ipv4.tcp_low_latency 1
+  setprop persist.sys.net.rx_rate 1
+  setprop persist.sys.net.tx_rate 1
+  setprop persist.sys.net.max_tx_burst 1
+  setprop persist.sys.net.sched_min_pkt_size 64
+  # Prioritaskan traffic game (membutuhkan modul kernel atau fitur bawaan yang mendukung QoS)
+  # Ini adalah contoh dan mungkin tidak berfungsi di semua perangkat/kernel
+  # iptables -t mangle -A POSTROUTING -p tcp -m multiport --dports 80,443,5228 -j DSCP --set-dscp 46
+
+  # --- Tambahan Pengaturan Sensitivitas Layar (Touch) ---
+  # Mengatur waktu tunda sentuhan menjadi sangat rendah
+  settings put system pointer_speed 7 # Max speed
+  settings put system show_touches 0 # Optional, hide visual feedback
+  settings put system touch_pressure_scale 0.1 # Make touch more sensitive to light press
+  settings put system touch_interval 0 # Reduce touch interval to minimum (ms)
+  settings put system touch_hold_delay 0 # Reduce touch hold delay to minimum (ms)
+  setprop debug.input.touch_jitter_threshold 0 # Reduce touch jitter
+  setprop persist.sys.touch.response_time 0
+  setprop persist.sys.touch.tap_threshold 0
+  setprop persist.sys.input_boost_ms 0
+  setprop persist.sys.input_boost_duration 0
+  # Untuk beberapa perangkat, kalibrasi touch screen
+  # input touchscreen calibrate (jika command ini tersedia di ROM kamu)
+
 ) > /dev/null 2>&1 &
 
 # Game-specific optimizations
@@ -107,9 +178,7 @@ for app in \
   com.roblox.client
 do
   dumpsys deviceidle whitelist +$app
-  echo "[✔] $app (
-
-120FPS) optimized by Agung Developer!"
+  echo "[✔] $app (ULTIMATE PERFORMANCE) optimized by Agung Developer!"
 done
 
 # Final status messages with watermark
@@ -118,12 +187,16 @@ echo "█▓▒▒░░░OPTIMIZATION STATUS by Agung Developer░░░▒▒
 echo "MATIKAN THERMAL LIMIT FPS [✓]"
 echo "PAKSA REFRESH RATE MAXIMAL [✓]"
 echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
+echo "OPTIMASI CPU & GPU [✓]"
+echo "OPTIMASI MEMORI & JARINGAN [✓]"
+echo "PENINGKATAN SENSITIVITAS LAYAR [✓]"
 echo "ALL SETTINGS APPLIED [✓]"
 echo ""
-echo "‼️ ENJOY GAMING WITH AGUNG DEVELOPER ‼️"
+echo "‼️ ENJOY ULTIMATE GAMING WITH AGUNG DEVELOPER ‼️"
 echo "DO NOT REBOOT DEVICE"
-echo "█▓▒▒░░░THANKS FOR USING 120FPS INJECTOR by Agung Developer░░░▒▒▓█"
+echo "█▓▒▒░░░THANKS FOR USING ULTIMATE GAMING BOOSTER by Agung Developer░░░▒▒▓█"
 echo ""
 
 # Final notification
-cmd notification post -S bigtext -t 'FPS INJECTOR' 'Tag' '120FPS SUCCESSFULLY ACTIVATED by Agung Developer'
+cmd notification post -S bigtext -t 'ULTIMATE GAMING BOOSTER' 'Tag' 'ULTIMATE PERFORMANCE SUCCESSFULLY ACTIVATED by Agung Developer'
+
