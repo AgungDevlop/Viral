@@ -16,7 +16,7 @@
         "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/redmagic.sh"
     },
     {
-        "name": "Stop Module",
-        "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/stopmodule.sh"
+        "name": "Restore Device",
+        "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/restore.sh"
     }
 ]
