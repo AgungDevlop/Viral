@@ -1,6 +1,7 @@
 #!/system/bin/sh
-# 120FPS & Ultimate Performance Module by Agung Developer
-# Optimized for enforcing 120 FPS, disabling thermal limits, and enhancing touch sensitivity
+# Ultimate Gaming Booster with Dynamic DPI by Agung Developer
+# Optimized for enforcing 120 FPS, disabling thermal limits, enhancing touch sensitivity,
+# and dynamically adjusting DPI for gaming.
 # Watermark: Agung Developer
 
 # Display initial notification
@@ -30,6 +31,22 @@ echo ""
 echo "█▓▒▒░░░INSTALLATION by Agung Developer░░░▒▒▓█"
 echo ""
 sleep 0.5
+
+# --- CATAT DPI BAWAAN SEBELUM PERUBAHAN ---
+ORIGINAL_DENSITY=$(wm density | grep -o '[0-9]*' | head -n 1)
+echo "DPI Bawaan Terdeteksi: $ORIGINAL_DENSITY"
+sleep 1
+
+# --- FUNGSI UNTUK MENGEMBALIKAN DPI ---
+restore_dpi() {
+    echo "Mengembalikan DPI ke $ORIGINAL_DENSITY..."
+    wm density "$ORIGINAL_DENSITY" && wm size reset
+    cmd notification post -S bigtext -t 'ULTIMATE GAMING BOOSTER' 'Tag' 'DPI Dikembalikan ke Bawaan'
+    echo "DPI berhasil dikembalikan."
+}
+
+# Trap Ctrl+C (SIGINT) dan keluar dari skrip, lalu panggil fungsi restore_dpi
+trap restore_dpi EXIT
 
 # Core FPS and refresh rate optimizations
 (
@@ -110,6 +127,11 @@ sleep 0.5
       fi
   done
 
+  # Lebih banyak optimasi CPU (tergantung kernel dan ketersediaan file)
+  echo "100" > /proc/sys/kernel/sched_util_clamp_min # Memaksa core bekerja di performa tinggi
+  echo "0" > /proc/sys/kernel/perf_cpu_time_max_percent # Mengurangi overhead pengukuran performa
+  echo "0" > /proc/sys/kernel/sched_child_runs_first # Mengurangi penundaan proses anak
+
   # GPU Optimization (Generic settings, may vary by GPU/driver)
   # Meningkatkan clock GPU secara agresif
   setprop debug.egl.force_msaa 0
@@ -119,6 +141,7 @@ sleep 0.5
   setprop debug.renderengine.force_sg_backend skiagl
   # Mengatur preferensi driver GPU (jika didukung)
   settings put global enable_gpu_debug_layer 1
+  setprop hwui.render_dirty_regions false # Menonaktifkan rendering area kotor yang dapat memakan waktu
 
   # Memory & ZRAM Optimization
   # Menonaktifkan thermal throttling untuk memori dan swap
@@ -129,6 +152,7 @@ sleep 0.5
   echo 1 > /proc/sys/vm/overcommit_memory
   echo 1 > /proc/sys/kernel/sched_autogroup_enabled
   echo 0 > /sys/kernel/debug/tracing/tracing_on # Disable kernel tracing for performance
+  echo 20 > /proc/sys/vm/vfs_cache_pressure # Menjaga lebih banyak cache filesystem di memori
 
   # Network Optimization (for lower latency)
   setprop net.tcp.delack.default 1
@@ -141,12 +165,8 @@ sleep 0.5
   setprop persist.sys.net.tx_rate 1
   setprop persist.sys.net.max_tx_burst 1
   setprop persist.sys.net.sched_min_pkt_size 64
-  # Prioritaskan traffic game (membutuhkan modul kernel atau fitur bawaan yang mendukung QoS)
-  # Ini adalah contoh dan mungkin tidak berfungsi di semua perangkat/kernel
-  # iptables -t mangle -A POSTROUTING -p tcp -m multiport --dports 80,443,5228 -j DSCP --set-dscp 46
 
   # --- Tambahan Pengaturan Sensitivitas Layar (Touch) ---
-  # Mengatur waktu tunda sentuhan menjadi sangat rendah
   settings put system pointer_speed 7 # Max speed
   settings put system show_touches 0 # Optional, hide visual feedback
   settings put system touch_pressure_scale 0.1 # Make touch more sensitive to light press
@@ -157,12 +177,10 @@ sleep 0.5
   setprop persist.sys.touch.tap_threshold 0
   setprop persist.sys.input_boost_ms 0
   setprop persist.sys.input_boost_duration 0
-  # Untuk beberapa perangkat, kalibrasi touch screen
-  # input touchscreen calibrate (jika command ini tersedia di ROM kamu)
 
 ) > /dev/null 2>&1 &
 
-# Game-specific optimizations
+# Game-specific optimizations (for battery)
 echo "Disabling battery optimizations for supported games..."
 for app in \
   com.netease.newspike \
@@ -175,28 +193,34 @@ for app in \
   com.dts.freefiremax \
   com.garena.game.kgvn \
   com.tencent.tmgp.sgame \
-  com.roblox.client
+  com.roblox.client \
+  com.example.game # Tambahkan package name game yang ingin kamu luncurkan
 do
   dumpsys deviceidle whitelist +$app
   echo "[✔] $app (ULTIMATE PERFORMANCE) optimized by Agung Developer!"
 done
 
-# Final status messages with watermark
-echo ""
-echo "█▓▒▒░░░OPTIMIZATION STATUS by Agung Developer░░░▒▒▓█"
-echo "MATIKAN THERMAL LIMIT FPS [✓]"
-echo "PAKSA REFRESH RATE MAXIMAL [✓]"
-echo "PAKSA MAX THERMAL LIMIT FPS [✓]"
-echo "OPTIMASI CPU & GPU [✓]"
-echo "OPTIMASI MEMORI & JARINGAN [✓]"
-echo "PENINGKATAN SENSITIVITAS LAYAR [✓]"
-echo "ALL SETTINGS APPLIED [✓]"
-echo ""
-echo "‼️ ENJOY ULTIMATE GAMING WITH AGUNG DEVELOPER ‼️"
-echo "DO NOT REBOOT DEVICE"
-echo "█▓▒▒░░░THANKS FOR USING ULTIMATE GAMING BOOSTER by Agung Developer░░░▒▒▓█"
-echo ""
+# --- PENGATURAN DPI SAAT IN-GAME ---
+TARGET_DENSITY=500
+echo "Mengatur DPI ke $TARGET_DENSITY untuk gaming..."
+wm density "$TARGET_DENSITY" && wm size reset
+cmd notification post -S bigtext -t 'ULTIMATE GAMING BOOSTER' 'Tag' "DPI diatur ke $TARGET_DENSITY"
+sleep 2 # Beri waktu sistem untuk menerapkan perubahan DPI
 
-# Final notification
-cmd notification post -S bigtext -t 'ULTIMATE GAMING BOOSTER' 'Tag' 'ULTIMATE PERFORMANCE SUCCESSFULLY ACTIVATED by Agung Developer'
+# --- LUNCURKAN GAME PILIHAN ---
+# GANTI com.example.game dengan package name game yang ingin kamu mainkan.
+# Contoh: am start -n com.mobile.legends/com.mobile.legends.MainActivity
+echo "Meluncurkan game..."
+am start -n com.example.game/com.example.game.MainActivity # Ganti ini dengan package name dan activity yang sesuai
+GAME_PID=$! # Simpan PID dari game yang diluncurkan
 
+# Tunggu sampai game ditutup
+echo "Menunggu game ditutup..."
+while pgrep -f "com.example.game" > /dev/null; do
+    sleep 5
+done
+
+echo "Game ditutup. Mengembalikan DPI..."
+
+# Skrip akan otomatis memanggil restore_dpi() karena trap EXIT
+exit 0
