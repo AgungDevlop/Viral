@@ -14,5 +14,9 @@
     {
         "name": "RedMagic",
         "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/redmagic.sh"
+    },
+    {
+        "name": "Restore Device",
+        "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/restoredevice.sh"
     }
 ]
