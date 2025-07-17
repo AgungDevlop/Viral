@@ -17,6 +17,6 @@
     },
     {
         "name": "Restore Device",
-        "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/restore.sh"
+        "url": "https://raw.githubusercontent.com/AgungDevlop/Viral/refs/heads/main/restoredevice.sh"
     }
 ]
