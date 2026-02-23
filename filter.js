@@ -20,7 +20,6 @@ try {
     const cleanVideos = videos.filter(video => {
         const title = video.Judul.trim();
         if (!title) return false;
-        
         return !junkPatterns.some(pattern => pattern.test(title));
     });
 
