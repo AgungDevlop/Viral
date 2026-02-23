@@ -1,0 +1,38 @@
+name: Manual Clean Dead URLs
+
+on:
+  workflow_dispatch: # Hanya jalan kalau di-trigger manual olehmu
+
+jobs:
+  check-dead-links:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            Video.json
+            clean_urls.js
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Jalankan Pengecekan URL
+        run: node clean_urls.js
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add Video.json
+          
+          if ! git diff --staged --quiet; then
+            git commit -m "Manual Action: Menghapus URL video yang mati/error"
+            git push
+          fi
