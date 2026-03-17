@@ -1,0 +1,43 @@
+name: Update CDN URL in Video JSON
+
+# Memastikan workflow hanya berjalan jika ditrigger manual
+on:
+  workflow_dispatch: 
+
+jobs:
+  update-urls:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Izin ini wajib agar GitHub Actions bisa melakukan commit & push
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace cdn.videy.co with cdn2.videy.co
+        run: |
+          # Memastikan file Video.json ada sebelum dieksekusi
+          if [ -f "Video.json" ]; then
+            # Menggunakan sed untuk mereplace string secara otomatis di dalam file
+            sed -i 's/https:\/\/cdn\.videy\.co/https:\/\/cdn2.videy.co/g' Video.json
+            echo "Berhasil mengubah URL di file Video.json"
+          else
+            echo "File Video.json tidak ditemukan!"
+            exit 1
+          fi
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Mengecek apakah ada perubahan pada file setelah perintah sed
+          if git diff --quiet; then
+            echo "Tidak ada URL yang berubah. Mungkin sudah menjadi cdn2."
+          else
+            git add Video.json
+            git commit -m "chore: update cdn.videy.co to cdn2.videy.co"
+            git push
+            echo "Perubahan berhasil dicommit dan dipush ke repository."
+          fi
+          
