@@ -6,13 +6,13 @@ on:
       - 'Video.json'
   workflow_dispatch:
 
-# Menambahkan environment variable untuk memaksa action menggunakan Node 24
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   filter-junk:
     runs-on: ubuntu-latest
+    # Pindahkan env ke sini dan gunakan tanda kutip
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+      
     permissions:
       contents: write
       pull-requests: read
@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24' # Diperbarui dari 20 ke 24
+          node-version: '24'
 
       - name: Run Filter
         run: node filter.js
@@ -38,12 +38,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add Video.json
-          
-          if ! git diff --staged --quiet; then
-            git commit -m "Auto-filter: Menghapus judul video junk"
-            git push
-          fi
           git add Video.json
           
           if ! git diff --staged --quiet; then
